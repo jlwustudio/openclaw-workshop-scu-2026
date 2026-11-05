@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenClaw 本機安裝與操作完整手冊｜打造你的第一個 AI 助理</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/workshop.css">
+  <style>
+    .guide-box {
+      background: #ffffff;
+      border: 1px solid #ebdcd0;
+      border-radius: 24px;
+      padding: 32px 34px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 6px -1px rgba(66, 40, 29, 0.02), 0 16px 36px -4px rgba(66, 40, 29, 0.06);
+    }
+    .guide-box h2 {
+      margin-top: 0;
+      color: var(--navy);
+      font-size: 1.45rem;
+      border-bottom: 2px solid #f0e3d5;
+      padding-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .guide-box h3 {
+      color: var(--navy);
+      margin-top: 24px;
+      font-size: 1.2rem;
+    }
+    .guide-figure {
+      margin: 16px 0 8px;
+      text-align: center;
+    }
+    .guide-figure img {
+      max-width: min(100%, 360px);
+      height: auto;
+      border: 1px solid #ebdcd0;
+      border-radius: 16px;
+      background: #ffffff;
+    }
+    .guide-figure.wide img { max-width: 100%; }
+    .guide-figure figcaption {
+      margin-top: 8px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .table-wrap { overflow-x: auto; margin: 12px 0; }
+    .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 520px; }
+    .table-wrap th, .table-wrap td { border: 1px solid #ebdcd0; padding: 8px 10px; text-align: left; }
+    .table-wrap th { background: #fcf8f4; color: var(--navy); }
+    .faq-item {
+      border: 1px solid #ebdcd0;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      background: #fcf8f4;
+      transition: all 0.2s ease;
+    }
+    .faq-item:hover {
+      background: #ffffff;
+      border-color: #dfcaa8;
+      box-shadow: 0 6px 18px rgba(66, 40, 29, 0.05);
+    }
+    .faq-item h4 {
+      margin: 0 0 8px 0;
+      color: var(--navy);
+      font-size: 1.08rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主要導覽">
+      <a class="brand" href="index.html"><img src="assets/favicon.svg" width="32" height="32" alt="">打造你的第一個 AI 助理</a>
+      <div class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="day1-foundations.html">Day 1 講義</a>
+        <a href="day2-applications.html">Day 2 講義</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="breadcrumbs"><a href="index.html">首頁</a> / <a href="day1-foundations.html">Day 1</a> / 安裝操作指南</p>
+      <span class="eyebrow">Self-Contained Installation Guide</span>
+      <h1>OpenClaw 本機安裝與操作手冊</h1>
+      <p class="lead">全步驟教學：從環境安裝、首次精靈設定、工作區同步到日常管理與故障排除。OpenClaw 裝在自己電腦上，大腦使用 Google Gemini 雲端模型。</p>
+      <div class="learning-nav">
+        <a href="#part0">Part 0 · 環境檢測</a>
+        <a href="#partA">Part A · 申請金鑰</a>
+        <a href="#partB">Part B · 軟體安裝</a>
+        <a href="#partC">Part C · 工作區與資料</a>
+        <a href="#partD">Part D · 指令小抄</a>
+        <a href="#partE">Part E · 疑難排錯 FAQ</a>
+        <a href="#partF">Part F · 課後移除</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- Part 0 -->
+    <section class="guide-box" id="part0">
+      <h2><span>💻</span> Part 0：安裝前環境確認</h2>
+      <p>在開始之前，請先確認你的筆電符合以下基本條件：</p>
+      <ul>
+        <li><strong>作業系統：</strong>macOS 13+ (Apple Silicon 或 Intel) 或 Windows 10 22H2 / Windows 11 (64-bit)。</li>
+        <li><strong>磁碟空間：</strong>至少需保留 <strong>2 GB</strong> 以上可用空間。</li>
+        <li><strong>安裝時需要電腦密碼：</strong>Mac 安裝 Homebrew、Windows 安裝 Node.js 時會要求輸入密碼或允許變更；裝好後用一般使用者帳號即可運行，請勿在指令前隨意加上 <code>sudo</code>。</li>
+        <li><strong>穩定網路：</strong>首次安裝與下載 npm 套件時需連接網路。</li>
+      </ul>
+    </section>
+
+    <!-- Part A -->
+    <section class="guide-box" id="partA">
+      <h2><span>☁️</span> Part A：申請 Google AI Studio 金鑰（連接雲端大腦）</h2>
+      <p>本工作坊採用 <strong>Google Gemini 雲端模型</strong>當助理的大腦：運算在 Google 的伺服器上進行，學員筆電不需要獨立顯卡。只要一個<b>個人 Gmail</b> 就能免費申請，不需要綁信用卡。這一步只用瀏覽器，安裝軟體前就可以先做。</p>
+
+      <h3>1. 建立專案與 API 金鑰</h3>
+      <ol class="step-list">
+        <li><strong>用個人 Gmail 登入：</strong>打開 <a href="https://aistudio.google.com" target="_blank" rel="noopener" style="color:var(--blue); font-weight:700;">aistudio.google.com</a>。<b>請用個人 Gmail，不要用學校帳號</b>；學校帳號可能被管理員限制，無法建立專案。</li>
+        <li><strong>先建立專案：</strong>左側選單點 <b>Projects</b> ➔ <b>Create project</b>，名稱自訂（例如 <code>openclaw</code>）。<b>一定要先建專案</b>，否則下一步會出現「No Cloud Projects Available」與權限錯誤。</li>
+        <li><strong>建立金鑰：</strong>左側選單點 <b>API Keys</b> ➔ 右上角 <b>Create API key</b> ➔ 選剛建立的專案 ➔ <b>Create key</b>。
+        </li>
+        <li><strong>複製金鑰：</strong>金鑰建立後畫面不會直接顯示，要點該列右側的<b>複製圖示</b>（兩個方框疊在一起）才能取得完整金鑰。先貼到記事本暫存，Part B 步驟 3 會用到。</li>
+        <li><strong>確認是免費方案：</strong>Billing Tier 欄位要顯示 <b>Free tier</b>。旁邊的 <b>Set up billing</b> 是綁信用卡的入口，<b>不要點</b>。
+        </li>
+      </ol>
+
+      <div class="tip danger">
+        <span class="tip-title">金鑰等同密碼</span>
+        <p>不要截圖、投影、貼到聊天室、簡報或公開儲存庫。不小心外流時，到 AI Studio 的 API Keys 頁刪除這把金鑰，再建一把新的。也不要改到 Google Cloud Console 建立金鑰：步驟多、需要服務帳號，而且在 AI Studio 以外建立的專案，可能要先通過驗證才能使用免費額度。</p>
+      </div>
+
+      <h3 id="gemini-quota">2. 認識免費額度</h3>
+      <p>在 AI Studio 左側點 <b>Rate Limit</b>，再打開右上角 <b>All models</b> 開關，就能看到每個模型的額度。課堂使用 <b>Gemini 3.5 Flash Lite</b> 當主模型、<b>Gemini 3.1 Flash Lite</b> 當備援；兩者各有獨立的免費額度，主模型撞到上限時，OpenClaw 會自動改用備援模型。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>模型</th><th>每分鐘請求</th><th>每分鐘 token</th><th>每日請求</th><th>課堂用途</th></tr></thead>
+          <tbody>
+            <tr><td>Gemini 3.5 Flash Lite</td><td>15</td><td>25 萬</td><td>500</td><td><b>主模型</b></td></tr>
+            <tr><td>Gemini 3.1 Flash Lite</td><td>15</td><td>25 萬</td><td>500</td><td><b>備援</b></td></tr>
+            <tr><td>Gemini 3.8／3.6／3／2.5 Flash</td><td>5</td><td>25 萬</td><td>20</td><td>每天太少，不要用</td></tr>
+            <tr><td>Gemma 4 26B／31B</td><td>30</td><td>1.6 萬</td><td>14,400</td><td>單次請求就接近上限</td></tr>
+            <tr><td>Gemini Pro 系列</td><td>0</td><td>0</td><td>0</td><td>免費方案不能用</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.86rem; color:var(--muted);">以上為 2026/11/5 查詢的免費方案額度；Google 可能調整，以自己 Rate Limit 頁顯示的為準。</p>
+      <h4 style="margin:16px 0 6px;">怎麼看 Rate Limit 頁</h4>
+      <p>頁面標題是 <b>Rate limits by model</b>，每個模型一列，模型依名稱排序，Gemini 3.5 Flash Lite 在清單偏下方。右邊三欄就是額度，每格寫成「<b>用量 / 上限</b>」，前面有一條進度條：</p>
+      <ul>
+        <li><strong>RPM</strong>：每分鐘請求次數，例如 <code>11 / 15</code> 表示一分鐘內最多用到 11 次，上限 15 次。</li>
+        <li><strong>TPM</strong>：每分鐘 token 數，例如 <code>165.46K / 250K</code>。這一欄最容易滿，進度條接近滿格時，就是該輸入 <code>/new</code> 的訊號。</li>
+        <li><strong>RPD</strong>：每天請求次數，例如 <code>43 / 500</code>。</li>
+      </ul>
+      <p>上限寫 <code>0 / 0</code> 的模型代表免費方案不能用。沒打開 All models 時，只會列出用過的模型。</p>
+      <ul>
+        <li><strong>名氣大的不一定適合：</strong>一般 Flash 版免費方案每天只有 20 次，OpenClaw 聊幾輪就會用完，<b>一定要用 Flash Lite</b>。</li>
+        <li><strong>表格顯示的是「最高峰」：</strong>用量欄是過去 28 天的最高紀錄，像汽車的「最高時速紀錄」，不是即時時速表。</li>
+        <li><strong>每天下午 4 點重置：</strong>每日額度在美國太平洋時間午夜重置，冬令時間是台灣時間下午 4 點（夏令時間 3～11 月初是下午 3 點）。</li>
+        <li><strong>每人額度獨立：</strong>額度以專案計算，每位同學用自己的 Gmail 與專案，彼此互不影響。</li>
+        <li><strong>撞到上限不會被收費：</strong>只會被暫時擋下，不會扣款也不會停權；OpenClaw 會冷卻約 30 秒再試。</li>
+        <li><strong>真正的瓶頸是每分鐘 token：</strong>每次呼叫都會把整段對話重送一次，對話越長越容易撞到。對話太長時輸入 <code>/new</code> 開新對話。</li>
+      </ul>
+
+      <div class="notice" style="margin-top:12px;">
+        <strong>💡 只輸入虛構資料：</strong>Google 免費方案送出的內容可能被用於改善 Google 的產品。課堂練習一律使用教材裡的虛構資料，不要輸入真實姓名、學號、電話或任何個資。
+      </div>
+    </section>
+
+    <!-- Part B -->
+    <section class="guide-box" id="partB">
+      <h2><span>⚙️</span> Part B：核心軟體安裝與首次啟動</h2>
+
+      <div class="notice" id="version-baseline"><strong>課堂版本基準：</strong>OpenClaw 需要本機 Node.js 與 npm；課堂版本檢查基準為 Node 24.16+（24.x）或 26.1+（26.x），官方建議 Node 26；其他版本請由助教確認。如需升級 Node，請在安裝或更新 OpenClaw 之前完成。OpenClaw 課堂固定版本為 2026.10.2，模型固定為 <code>google/gemini-3.5-flash-lite</code>。啟動後以 <code>openclaw health</code> 檢查 Gateway；Day 2 另依 <a href="workshop-config/README.md">唯讀設定</a> 限制權限。</div>
+      <h3 id="install-basics">1. 必要基礎套件安裝 (Node.js, Git)</h3>
+      <p>請依你的作業系統，<strong>由上而下逐步完成</strong>，每一步都做完再做下一步：</p>
+
+      <div class="cards two">
+        <article class="card" data-os="mac">
+          <h4> macOS 安裝</h4>
+          <ol class="step-list">
+            <li><strong>安裝 Homebrew（已安裝可跳過）：</strong>打開「終端機 (Terminal)」，輸入 <code>brew -v</code>。有印出版本號代表已安裝；沒有的話到 <a href="https://brew.sh" target="_blank" rel="noopener" style="color:var(--blue); font-weight:700;">brew.sh</a> 複製安裝指令貼到終端機執行。過程需輸入電腦密碼並下載 Apple 開發者工具。</li>
+            <li><strong>執行 Homebrew 的 Next steps（剛裝 Homebrew 才需要）：</strong>Homebrew 裝完後，畫面最後會列出「Next steps」指令，請照著複製執行，再把終端機完全關閉重開；否則會找不到 <code>brew</code>。</li>
+            <li><strong>安裝 Node.js 與 Git：</strong>輸入下列指令。<b>不要用 nodejs.org 的 .pkg 安裝檔</b>，之後 <code>npm install -g</code> 會因權限不足失敗。
+              <div class="code">brew install node git</div>
+            </li>
+            <li><strong>關閉終端機，重新開一個：</strong>按 ⌘ + Q 完全結束「終端機」，再重新打開。</li>
+            <li><strong>確認安裝成功：</strong>逐行輸入，每一行都要印出版本號：
+              <div class="code">node -v
+npm -v
+git --version</div>
+              <p>另外看 <code>node -v</code> 的版本：<b>v24.16 以上的 v24.x，或 v26.1 以上的 v26.x</b> 才符合課堂要求（例如 <code>v24.20.0</code> 可以，<code>v22.x</code> 或 <code>v25.x</code> 不行）。不符合請舉手找助教。</p>
+            </li>
+          </ol>
+        </article>
+
+        <article class="card" data-os="win">
+          <h4>⊞ Windows 安裝</h4>
+          <ol class="step-list">
+            <li><strong>打開 PowerShell：</strong>按開始鍵，輸入 <code>PowerShell</code> 後按 Enter。</li>
+            <li><strong>安裝 Node.js：</strong>輸入下列指令；跳出「是否允許變更」時按「是」。沒有管理員權限的電腦請找助教。
+              <div class="code">winget install OpenJS.NodeJS.LTS --source winget</div>
+            </li>
+            <li><strong>安裝 Git：</strong>輸入：
+              <div class="code">winget install Git.Git --source winget</div>
+            </li>
+            <li><strong>允許 PowerShell 執行指令碼：</strong>Windows 預設會擋住 <code>npm</code>，出現「因為這個系統上已停用指令碼執行」。輸入下列指令，出現確認提示時輸入 <code>Y</code> 按 Enter；只影響自己的帳號，不需要管理員權限。
+              <div class="code">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</div>
+            </li>
+            <li><strong>關閉所有 PowerShell 視窗，重新開一個：</strong>剛裝好的程式要在新視窗才找得到；沒有重開，之後會出現「無法辨識 'npm' 詞彙」。</li>
+            <li><strong>確認安裝成功：</strong>在新的 PowerShell 逐行輸入，每一行都要印出版本號：
+              <div class="code">node -v
+npm -v
+git --version</div>
+              <p>成功時的畫面如下（示意）。版本號可能不同，只要三個指令都印出版本號、沒有紅色錯誤訊息就算通過。另外看 <code>node -v</code> 的版本：<b>v24.16 以上的 v24.x，或 v26.1 以上的 v26.x</b> 才符合課堂要求（例如 <code>v24.20.0</code> 可以，<code>v22.x</code> 或 <code>v25.x</code> 不行）；不符合請舉手找助教。</p>
+              <div class="screen-prompt">PS C:\Users\你的名字&gt; node -v
+v24.20.0
+PS C:\Users\你的名字&gt; npm -v
+11.19.0
+PS C:\Users\你的名字&gt; git --version
+git version 2.55.0.windows.5</div>
+            </li>
+          </ol>
+        </article>
+      </div>
+
+      <h3 id="install-openclaw" style="margin-top:24px;">2. 安裝 OpenClaw 課堂固定版本</h3>
+      <ol class="step-list">
+        <li><strong>安裝課堂固定版本：</strong>輸入下列指令，避免自動裝到講師尚未試跑的新版。<code>--allow-scripts</code> 讓 OpenClaw 與相依套件完成安裝設定，請完整複製、不要省略。約需 1–2 分鐘。
+          <div class="code">npm install -g openclaw@2026.10.2 --allow-scripts=@google/genai,esbuild,koffi,protobufjs,openclaw</div>
+        </li>
+        <li><strong>確認安裝成功：</strong>最後出現 <code>added … packages</code> 或 <code>changed … packages</code> 就是成功。<code>npm warn deprecated</code> 與 <code>looking for funding</code> 可以忽略；若出現 <code>npm notice New major version of npm available</code>，<b>不要升級 npm</b>，課堂以目前版本為準。再輸入下列指令，應印出 <code>2026.10.2</code>：
+          <div class="code">openclaw --version</div>
+        </li>
+      </ol>
+
+      <h3 id="first-launch" style="margin-top:24px;">3. 執行設定精靈、指定模型並第一次對話</h3>
+      <p>準備好 Part A 複製的金鑰，輸入：</p>
+      <div class="code">openclaw onboard</div>
+
+      <h3 style="margin-top:20px;">👀 設定精靈的題目（照著選就對了）</h3>
+      <p>畫面上的題目與灰色虛線框是<b>會看到的文字，不用複製或輸入</b>；請照「你要做」用方向鍵和 Enter 選擇。題目順序可能略有不同，認題目文字即可。</p>
+      <ol class="step-list">
+        <li><strong>安全免責聲明</strong>
+          <p><b>你要做：</b>只是說明文字，看完繼續即可。OpenClaw 啟用工具後能讀檔與執行動作，所以 Day 2 會再用唯讀設定限制權限。</p>
+        </li>
+        <li><strong>你想如何開始？</strong>
+          <p><b>你要做：</b>選 <b>快速開始（建議）</b>。</p>
+        </li>
+        <li><strong>What would you like to create?</strong>
+          <p><b>你要做：</b>選 <b>One agent</b>。A small team 會讓多個助理輪流呼叫模型，很快就會撞到額度上限。</p>
+        </li>
+        <li><strong>Model/auth provider</strong>
+          <p><b>你要做：</b>用 ↓ 移到 <b>Google</b> 按 Enter。<b>不要直接按 Enter 選第一個</b>「在這台機器上偵測到的 AI」：那是電腦上已登入的其他 AI 工具（例如 Codex、Claude Code），每台電腦顯示的都不一樣。</p>
+          <figure class="guide-figure">
+            <img src="assets/onboard-provider-google.png" width="720" height="290" loading="lazy" alt="Model/auth provider 選單：第一個是在這台機器上偵測到的 AI，往下依序是 OpenAI、OpenRouter、xAI、Google、Anthropic、More、Skip for now">
+            <figcaption>游標預設停在第一個，請按 ↓ 移到 Google 再按 Enter</figcaption>
+          </figure>
+        </li>
+        <li><strong>安裝插件？（若出現）</strong>
+          <p><b>你要做：</b>選 <b>從 npm 下載</b>。</p>
+        </li>
+        <li><strong>Enter API key</strong>
+          <p><b>你要做：</b>貼上 Part A 複製的金鑰後按 Enter。畫面只會顯示圓點，這是正常的。</p>
+        </li>
+        <li><strong>若出現「Provider 正在限流」或 429</strong>
+          <p><b>你要做：</b>只要畫面寫著 <code>Credentials saved</code>，就代表金鑰已經存好。畫面會回到 Model/auth provider 選單，這次用 ↓ 移到最下面的 <b>Skip for now</b> 按 Enter 繼續；模型在下一段另外指定。</p>
+          <div class="screen-prompt">× gemini-api-key：Provider 正在限流。請稍後重試。
+Credentials saved; default unchanged. Google Generative AI API
+error (429): You exceeded your current quota ...</div>
+        </li>
+        <li><strong>其餘題目（頻道、DM 策略、管理員等）</strong>
+          <p><b>你要做：</b>一律先略過（Skip／Set up later）。Telegram 在 Day 2 再設定。</p>
+          <div class="notice" data-os="win">
+            <strong>等待期間 Windows 跳出「Windows 安全性」防火牆視窗：</strong>詢問「是否要允許公用和私人網路存取此應用程式?」（Node.js JavaScript Runtime），請按<b>「取消」</b>。終端機會繼續執行，不用等它；Dashboard 與對話畫面只在自己電腦內連線（<code>127.0.0.1</code>），取消不影響使用；按「允許」會讓同一個 Wi-Fi 的其他人有機會連到你的 OpenClaw。
+            <figure class="guide-figure">
+              <img src="assets/windows-firewall-nodejs.png" width="448" height="388" alt="Windows 安全性視窗：是否要允許公用和私人網路存取 Node.js JavaScript Runtime，下方有允許與取消按鈕">
+              <figcaption>看到這個視窗請按右下角「取消」</figcaption>
+            </figure>
+          </div>
+        </li>
+      </ol>
+      <p>精靈結束時若顯示 <code>service installation skipped</code>，代表背景服務還沒裝好，下一段會補裝。</p>
+
+      <h3 id="set-model" style="margin-top:24px;">指定模型、備援與背景服務</h3>
+      <p>精靈不一定會選到課堂用的模型，請逐行輸入下列指令手動指定（<code>#</code> 開頭的是說明，不用輸入）：</p>
+      <div class="code"># 指定主模型（每天 500 次）
+openclaw models set google/gemini-3.5-flash-lite
+
+# 加上備援模型（另一份每天 500 次）
+openclaw models fallbacks add google/gemini-3.1-flash-lite
+
+# 確認 gemini-3.5-flash-lite 那一列的 Tags 欄位出現 default
+openclaw models list --provider google
+
+# 確認背景服務
+openclaw gateway status</div>
+      <p><code>gateway status</code> 的 Runtime 不是 <code>running</code> 時，再輸入下面兩行安裝背景服務並檢查：</p>
+      <div class="code">openclaw gateway install
+openclaw health</div>
+      <div class="tip info">
+        <span class="tip-title">為什麼模型名稱要寫版本號？</span>
+        <p>不要改用 <code>gemini-flash-lite-latest</code>。latest 會隨 Google 改版自動換成別的模型，額度也可能跟著變；道理和課堂固定 OpenClaw 版本相同。</p>
+      </div>
+
+      <h3 id="first-chat" style="margin-top:24px;">第一次對話：幫助理取名字</h3>
+      <ol class="step-list">
+        <li><strong>打開對話畫面：</strong>輸入：
+          <div class="code">openclaw</div>
+        </li>
+        <li><strong>等狀態列出現 <code>connected | idle</code>：</strong>助理不會主動開口，要自己先說話。底部狀態列出現 <code>gemini-3.5-flash-lite</code> 代表已連上雲端模型。</li>
+        <li><strong>輸入開場白：</strong>複製下面這句貼上後按 Enter，名字可以換成你想取的：
+          <div class="code">你好，請用繁體中文跟我對話。我想幫你取個名字叫「小東」</div>
+          <p>加上「請用繁體中文」，模型才不會有時用英文或簡體中文回覆。</p>
+        </li>
+        <li><strong>耐心等候 30–60 秒：</strong>第一次對話時，OpenClaw 會建立助理的名字與個性檔案，連續呼叫模型約 15 次。若出現「The AI service needs a short break」，是撞到每分鐘上限，<b>等 30 秒再送一次</b>即可。看到助理用新名字回覆，就代表首次設定完成。
+          <p>助理回覆後，畫面底部的狀態列類似這樣：</p>
+          <div class="screen-prompt"> connected | idle
+ agent main (main) | session tui-… | gemini-3.5-flash-lite | tokens 15k/1.0m (1%)</div>
+        </li>
+      </ol>
+
+      <h3 id="open-dashboard" style="margin-top:24px;">4. 打開網頁版控制台（Dashboard）</h3>
+      <p>課程接下來都在網頁版操作。終端機的對話畫面不用關，另外開一個視窗執行：</p>
+      <ol class="step-list">
+        <li><strong>另開一個終端機：</strong><span data-os="mac">在「終端機」按 ⌘ + N 開新視窗。</span><span data-os="win">按開始鍵輸入 <code>PowerShell</code> 再開一個新視窗。</span>原本顯示對話的視窗保留著，不要在那裡輸入指令（那裡打的字會傳給助理）。</li>
+        <li><strong>打開網頁版：</strong>在新終端機視窗輸入：
+          <div class="code">openclaw dashboard</div>
+          瀏覽器會自動打開 <code>http://127.0.0.1:18789/#token=…</code> 的網頁。網址裡的 token 是登入憑證，不要截圖或分享給別人。
+        </li>
+        <li><strong>確認成功：</strong>網頁中間看得到剛才在終端機和助理的對話（標示「透過 TUI」），下方輸入框旁顯示 <code>Gemini 3.5 Flash Lite</code>，就代表網頁版和雲端模型都連上了。之後在下方輸入框打字，就能直接和助理對話。回答上方的「1 次讀取」之類的標籤可以點開，看助理實際用了哪些工具。
+        </li>
+      </ol>
+
+      <div class="tip info">
+        <span class="tip-title">網頁打不開或要求輸入 Token？</span>
+        <p>不要自己在瀏覽器輸入 <code>localhost:18789</code>，那樣會缺少 token；請一律用 <code>openclaw dashboard</code> 開啟。仍打不開時，執行 <code>openclaw health</code> 檢查背景服務，把結果交給助教。</p>
+      </div>
+      <div class="tip warn">
+        <span class="tip-title">左上角助理名字變成奇怪的字？</span>
+        <p>那是 Chrome 自動翻譯造成的（例如把英文名字翻成中文）。在網址列的翻譯提示選「一律不翻譯這個網站」即可。</p>
+      </div>
+    </section>
+
+    <!-- Part C -->
+    <section class="guide-box" id="partC">
+      <h2><span>📁</span> Part C：工作區目錄與教材資料載入</h2>
+      
+      <h3>1. OpenClaw 的預設工作區路徑</h3>
+      <p>OpenClaw 讀寫的所有檔案，都放在你的使用者資料夾裡的 <code>.openclaw</code> ➔ <code>workspace</code> 資料夾（以下稱「工作區」）：</p>
+      <ul>
+        <li data-os="mac"><strong>macOS：</strong>路徑寫成 <code>~/.openclaw/workspace</code>，<code>~</code> 代表你的使用者資料夾。</li>
+        <li data-os="win"><strong>Windows：</strong>路徑寫成 <code>%USERPROFILE%\.openclaw\workspace</code>，<code>%USERPROFILE%</code> 代表你的使用者資料夾（例如 <code>C:\Users\你的名字</code>）。照原樣貼上即可，Windows 會自動換成你的帳號，不用自己改。</li>
+      </ul>
+
+      <h3 id="copy-sample-data">2. 把教材的 sample-data 複製到工作區</h3>
+      <p>用檔案視窗複製貼上即可，不需要輸入指令。<code>.openclaw</code> 是隱藏資料夾，直接在視窗裡找不到，請照下面的方式打開；若顯示找不到，代表還沒完成 <a href="#partB">Part B 步驟 3</a> 的首次設定。</p>
+      <div class="cards two">
+        <article class="card" data-os="mac">
+          <h4>macOS（Finder）</h4>
+          <ol class="step-list">
+            <li><strong>拷貝 sample-data：</strong>在 Finder 打開教材資料夾，點一下 <code>sample-data</code> 資料夾，按 ⌘ + C。</li>
+            <li><strong>打開工作區：</strong>在 Finder 上方選單按「前往」➔「前往檔案夾⋯」（或按 ⇧ + ⌘ + G），貼上下面的路徑。下方出現藍色的「使用者 › 你的名字 › .openclaw › workspace」就代表路徑正確，按 Enter。
+              <div class="path-box" data-label="複製後貼到「前往檔案夾」"><code>~/.openclaw/workspace</code></div>
+            </li>
+            <li><strong>貼上：</strong>在工作區視窗的空白處按 ⌘ + V。若詢問是否取代，選「取代」。</li>
+            <li><strong>確認：</strong>工作區裡出現 <code>sample-data</code> 資料夾，打開後看得到 <code>學生社團調查.csv</code> 等檔案。
+            </li>
+          </ol>
+        </article>
+        <article class="card" data-os="win">
+          <h4>⊞ Windows（檔案總管）</h4>
+          <ol class="step-list">
+            <li><strong>複製 sample-data：</strong>在檔案總管打開教材資料夾，點一下 <code>sample-data</code> 資料夾，按 Ctrl + C。</li>
+            <li><strong>打開工作區：</strong>點一下檔案總管上方的網址列（顯示目前資料夾位置的那一格），把原本的文字換成下面的路徑後按 Enter。
+              <div class="path-box" data-label="複製後貼到檔案總管網址列"><code>%USERPROFILE%\.openclaw\workspace</code></div>
+            </li>
+            <li><strong>貼上：</strong>在工作區視窗的空白處按 Ctrl + V。若詢問是否取代，選「取代目的地中的檔案」。</li>
+            <li><strong>確認：</strong>工作區裡出現 <code>sample-data</code> 資料夾，打開後看得到 <code>學生社團調查.csv</code> 等檔案。</li>
+          </ol>
+        </article>
+      </div>
+
+      <h3 id="workspace-files">3. 工作區裡原本就有的檔案（請勿刪除）</h3>
+      <p>工作區裡除了你貼上的 <code>sample-data</code>，還有 OpenClaw 在第一次對話時建立的幾個設定檔。這些就是助理的「記憶」，其實都是一般文字檔，可以打開來看，但<b>不要刪除或改名</b>：</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>檔案</th><th>比喻</th><th>內容</th></tr></thead>
+          <tbody>
+            <tr><td><code>AGENTS.md</code></td><td>工作守則</td><td>助理做事的規則</td></tr>
+            <tr><td><code>IDENTITY.md</code></td><td>名牌</td><td>助理的名字</td></tr>
+            <tr><td><code>SOUL.md</code></td><td>個性</td><td>說話語氣與性格</td></tr>
+            <tr><td><code>USER.md</code></td><td>對你的認識</td><td>助理記得的使用者資訊</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Part D -->
+    <section class="guide-box" id="partD">
+      <h2><span>📌</span> Part D：常用管理與日常操作指令小抄 (Cheat Sheet)</h2>
+      
+      <div class="code"># 1. 重新開啟 Web 控制台 (Dashboard)
+openclaw dashboard
+
+# 2. 直接在終端機 (TUI) 介面與 AI 對話
+openclaw
+
+# 3. 重跑設定精靈；查看或重新指定模型
+openclaw onboard
+openclaw models list --provider google
+openclaw models set google/gemini-3.5-flash-lite
+
+# 4. 檢查背景服務狀態；Runtime 不是 running 時安裝
+openclaw gateway status
+openclaw gateway install
+
+# 5. 停止背景 Gateway 服務 (釋放 Port 18789)
+openclaw gateway stop
+
+# 6. 重新啟動背景 Gateway 服務
+openclaw gateway restart
+
+# 7. 自動診斷與修復環境異常
+openclaw doctor
+
+# 8. 即時查看背景日誌 (Log)
+openclaw logs --follow
+
+# 9. 確認版本（課堂固定 2026.10.2）與更新結果
+openclaw --version
+openclaw update status
+
+# 10. 查看健康狀態細節（含已停止的 Telegram 等通道帳號）
+openclaw health --json</div>
+      <p>另外兩個要在<b>對話框</b>（不是終端機指令列）輸入的指令：<code>/new</code> 開新對話（對話太長、出現殘留錯誤時），<code>/stop</code> 中斷目前的工作。</p>
+    </section>
+
+    <!-- Part E -->
+    <section class="guide-box" id="partE">
+      <h2><span>🔧</span> Part E：常見問題排錯 (FAQ)</h2>
+
+      <div class="faq-item" data-os="win">
+        <h4>Q1：Windows PowerShell 提示「在此系統上已停用指令碼執行」？</h4>
+        <p>此為 Windows 預設安全性原則。不需要管理者權限，在 PowerShell 貼上下列指令按 Enter 後輸入 <code>Y</code> 確認即可：</p>
+        <div class="code">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</div>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q2：執行時報錯「Error: required dependencies are missing (git)」？</h4>
+        <p>OpenClaw 在背景管理套件時需要 Git 工具：</p>
+        <div data-os="win"><div class="code">winget install Git.Git --source winget</div></div>
+        <div data-os="mac"><div class="code">brew install git</div></div>
+        <p style="font-size:0.88rem; color:var(--muted);">安裝後請將終端機全部關閉重新開啟。</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q3：網頁 Web UI 畫面出現「需要驗證」或要求輸入 Token 密碼？</h4>
+        <p>這是因為直接手動輸入 <code>localhost:18789</code> 時網址缺少安全 Token。請直接在終端機輸入：</p>
+        <div class="code">openclaw dashboard</div>
+        <p style="font-size:0.88rem; color:var(--muted);">系統會自動開啟帶有完整 Token 驗證的專屬網址。</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q4：提示「Gateway not reachable」或 Port 18789 被佔用？</h4>
+        <p>代表先前執行的服務未正常釋放埠號。請先重啟或釋放：</p>
+        <div class="code"># 重新啟動 Gateway
+openclaw gateway restart</div>
+        <div data-os="mac"><div class="code"># 仍被佔用時，強制釋放 Port 18789
+lsof -ti:18789 | xargs kill -9 2>/dev/null</div></div>
+        <div data-os="win"><div class="code"># 仍被佔用時，強制釋放 Port 18789（找出佔用該埠的程式並結束）
+Get-NetTCPConnection -LocalPort 18789 -State Listen -ErrorAction SilentlyContinue |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }</div></div>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q5：AI Studio 顯示「No Cloud Projects Available」或沒有權限建立金鑰？</h4>
+        <p>通常是還沒建立專案，或用了學校帳號。先到左側 <b>Projects</b> ➔ <b>Create project</b> 建立專案，再回 API Keys 建立金鑰；學校帳號被限制時，改用個人 Gmail。</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q6：設定精靈驗證金鑰時出現 429 或「Provider 正在限流」？</h4>
+        <p>精靈測試金鑰時剛好撞到限流。只要畫面寫著 <code>Credentials saved</code>，金鑰就已經存好；在回到的 Model/auth provider 選單選 <b>Skip for now</b> 繼續，再照 <a href="#set-model">Part B 步驟 3「指定模型」</a>用 <code>openclaw models set</code> 指定模型。</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q7：出現「The AI service needs a short break」？</h4>
+        <p>這一分鐘的 token 額度用完了，不會被收費。<b>等 30 秒再送一次</b>即可。如果很常出現，代表對話已經很長（每次都會把整段對話重送），在對話框輸入 <code>/new</code> 開新對話。</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q8：Gateway 無法重啟（GATEWAY_RESTART_PREPARATION_REFUSED 或 SERVICE_DEFINITION_UNKNOWN）？</h4>
+        <p>多半是重跑精靈後，背景服務的設定前後不一致。執行下列指令，修復提示都選 <b>Yes</b>：</p>
+        <div class="code">openclaw doctor</div>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q9：回答正常，但下方一直有灰色的 run error？</h4>
+        <p>那是先前錯誤留下的訊息，不影響目前的回答。在對話框輸入 <code>/new</code> 開新對話就會清除。</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q10：今天額度用完了？</h4>
+        <p>到 AI Studio 左側 <b>Rate Limit</b> 查看。主模型與備援模型各有每天 500 次，一般上課用不完；真的用完時，台灣時間下午 4 點會重置，期間請和旁邊同學共看。</p>
+      </div>
+    </section>
+
+    <!-- Part F -->
+    <section class="guide-box" id="partF">
+      <h2><span>🧹</span> Part F：工作坊結束後，移除 OpenClaw 並還原電腦</h2>
+
+      <div class="tip danger">
+        <span class="tip-title">課程進行中千萬不要執行！兩天工作坊全部結束後才做。</span>
+        <p>這些步驟會刪除工作區裡所有檔案、助理設定與 Telegram Bot 設定，<b>刪除後無法復原</b>。上課時遇到問題請看 <a href="#partE">Part E 疑難排錯</a> 或找助教，不要用移除重裝來解決。</p>
+      </div>
+
+      <div class="tip warn">
+        <span class="tip-title">只想停用、還想保留作品？</span>
+        <p>不必全部移除：完成下方第 2 步 <code>openclaw gateway stop</code>，並停用 Telegram 測試 Bot（第 6 步），助理就不會再呼叫雲端模型。免費方案沒有綁卡，不會被扣款。</p>
+      </div>
+
+      <p>確定課程已經結束、想把電腦還原時，依序完成：</p>
+      <ol class="step-list">
+        <li><strong>先保留想留下的作品：</strong>用 <a href="#copy-sample-data">Part C「打開工作區」</a>的方式打開工作區，把想保留的檔案（例如課程中產出的 <code>.md</code> 檔）複製到桌面或其他資料夾。</li>
+        <li><strong>停止背景服務：</strong>在終端機輸入：
+          <div class="code">openclaw gateway stop</div>
+        </li>
+        <li><strong>移除 OpenClaw 主程式：</strong>
+          <div class="code">npm uninstall -g openclaw</div>
+        </li>
+        <li><strong>刪除 OpenClaw 設定與工作區：</strong><b>這一步會刪除工作區內所有檔案，無法復原</b>；請確認第 1 步已完成。
+          <div data-os="mac"><div class="code">rm -rf ~/.openclaw</div></div>
+          <div data-os="win"><div class="code">Remove-Item -Recurse -Force "$HOME\.openclaw"</div></div>
+        </li>
+        <li><strong>刪除 Google AI Studio 金鑰：</strong>到 <a href="https://aistudio.google.com" target="_blank" rel="noopener" style="color:var(--blue); font-weight:700;">aistudio.google.com</a> 左側 <b>API Keys</b>，刪除課堂建立的金鑰；之後想再用就建一把新的。</li>
+        <li><strong>停用 Telegram 測試 Bot（Day 2 有建立的話）：</strong>在 Telegram 打開 BotFather，撤銷 Bot 的 Token 或直接刪除 Bot，避免別人繼續使用。</li>
+      </ol>
+
+      <div class="tip info">
+        <span class="tip-title">Node.js、Git 要不要也移除？</span>
+        <p>這兩個是通用工具，留著不影響電腦使用，之後學其他程式也用得到。想移除的話，<span data-os="mac">Mac 可在終端機執行 <code>brew uninstall node git</code>。</span><span data-os="win">Windows 可到「設定」➔「應用程式」找到 Node.js、Git 解除安裝。</span></p>
+      </div>
+    </section>
+
+    <div style="text-align:center; margin:32px 0;">
+      <a href="day1-foundations.html" class="btn" style="font-size:1.1rem; padding:12px 28px;">← 返回 Day 1 講義開始實作</a>
+      <a href="index.html" class="btn secondary" style="font-size:1.1rem; padding:12px 28px; margin-left:12px;">回到工作坊首頁</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>打造你的第一個 AI 助理｜本機安裝與操作手冊</span>
+      <a href="day1-foundations.html">開始 Day 1 講義 →</a>
+    </div>
+  </footer>
+  <script src="assets/workshop.js"></script>
+</body>
+</html>

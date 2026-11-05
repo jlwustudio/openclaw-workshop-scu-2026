@@ -1,0 +1,5 @@
+# 講師專用資料，不放進公開 repo（本機保留）
+instructor/
+
+# macOS 系統檔
+.DS_Store

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>打造你的第一個 AI 助理｜兩日實作工作坊</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/workshop.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主要導覽">
+      <a class="brand" href="index.html"><img src="assets/favicon.svg" width="32" height="32" alt="">打造你的第一個 AI 助理</a>
+      <div class="nav-links">
+        <a href="#themes">選題靈感</a>
+        <a href="#map">學習地圖</a>
+        <a href="#schedule">課程安排</a>
+        <a href="#prepare">課前準備</a>
+        <a href="survey-pre.html">課前自我檢核</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <img class="hero-logo" src="assets/favicon.svg" width="112" height="112" alt="從外雙溪探出頭、舉著雙鉗的紅色小龍蝦">
+        <span class="eyebrow">東吳大學 · 115-1 自主學習微課程</span>
+        <h1>打造你的第一個 AI 助理</h1>
+        <p class="lead"><b>從一個想法開始，做出你能拿來展示的 AI 助理。</b>這是一場以 OpenClaw 為核心的兩日實作工作坊。第一天建立 AI 助理與操作基礎；第二天完成本機 Skill、個人 Telegram 測試 Bot 與可展示的最小可行流程。</p>
+        <div class="hero-actions">
+          <a class="btn sun" href="#prepare">查看課前準備</a>
+          <a class="btn secondary" href="#map">查看兩日地圖</a>
+        </div>
+      </div>
+      <aside class="event-card" aria-label="活動資訊">
+        <div class="date">11.07 — 11.08</div>
+        <strong>2026 年秋季 · 兩日實作工作坊</strong>
+        <dl>
+          <div><dt>時間</dt><dd>09:00–12:00<br>13:00–16:00</dd></div>
+          <div><dt>地點</dt><dd>11/7（六）城中校區第六大樓 6401 大教室<br>11/8（日）城中校區菁英講堂</dd></div>
+          <div><dt>適合誰</dt><dd>有想法但不知道第一步怎麼下手的東吳學生；無程式背景也可以</dd></div>
+          <div><dt>核心產出</dt><dd>本機 AI Skill、個人 Telegram 測試 Bot、可展示的最小可行流程</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- Topic ideas -->
+    <section id="themes" style="margin-bottom: 56px;">
+      <div class="section-heading">
+        <span class="eyebrow">Topic ideas</span>
+        <h2>選題靈感：從身邊的校園問題開始</h2>
+        <p>以下只是發想方向，不是必選題；也可以帶自己的問題想法。選定後，透過 OpenClaw 打造一個小而可驗證的 AI 助理，並做<b>「使用者測試與回饋修正」</b>。</p>
+      </div>
+      <div class="cards two">
+        <article class="card" style="border-top: 5px solid #4f772d;">
+          <h3 style="margin-top:10px;">🌿 永續校園</h3>
+          <p>環境、能源、減塑或資源循環議題（如：空調節能提醒、二手書循環配對）。</p>
+        </article>
+        <article class="card" style="border-top: 5px solid #d96b27;">
+          <h3 style="margin-top:10px;">🚀 新服務點子</h3>
+          <p>發掘同學的潛在需求，做出服務原型（如：跨系專長媒合、履歷自傳修改教練）。</p>
+        </article>
+        <article class="card" style="border-top: 5px solid #a0522d;">
+          <h3 style="margin-top:10px;">⚡ 流程改善</h3>
+          <p>鎖定校園中費時的流程，做資訊整理與草稿助理（如：跨校區選課提醒、社團場地借用檢核表）。</p>
+        </article>
+        <article class="card" style="border-top: 5px solid #1565c0;">
+          <h3 style="margin-top:10px;">🧭 校園資源導讀</h3>
+          <p>把分散的校內資源整理成好找的入口，只做資源指引、不代做決定（如：校內協助資源導讀、國際生校園生活導覽）。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="section-heading">
+        <span class="eyebrow">Learning map</span>
+        <h2>先學會操作，再打開應用想像。</h2>
+        <p>課程以講師示範與學生跟做為主。你不必在兩天內做出完美產品；更重要的是帶走能持續發展的 AI 助理實作能力。</p>
+      </div>
+      <div class="cards two">
+        <article class="card day-card day-one">
+          <p class="day-label">Day 1 · 基礎與安裝</p>
+          <h3>理解、啟動、說清楚</h3>
+          <p>從 LLM 與 AI Agent 的差異開始，完成 OpenClaw 環境建置，並各自完成可驗證 MVP 的問題、資料與安全邊界。</p>
+          <ul>
+            <li>OpenClaw 與 workspace</li>
+            <li>任務、資料、預期成果</li>
+            <li>個人 MVP 畫布與安全界線</li>
+          </ul>
+          <a class="btn secondary" href="day1-foundations.html">進入 Day 1 講義</a>
+        </article>
+        <article class="card day-card day-two">
+          <p class="day-label">Day 2 · 進階應用</p>
+          <h3>看資料、做整理、延伸能力</h3>
+          <p>每人建立本機唯讀 Skill 與個人 Telegram 測試 Bot；各自串接有來源的待核准草稿，完成同儕測試、修正與專案企劃匯出。</p>
+          <ul>
+            <li>可追溯資料與本機最小 Skill</li>
+            <li>個人 Telegram 測試 Bot 與人工核准</li>
+            <li>個人 MVP、同儕測試與企劃匯出</li>
+          </ul>
+          <a class="btn secondary" href="day2-applications.html">進入 Day 2 講義</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <div class="section-heading">
+        <span class="eyebrow">Schedule</span>
+        <h2>兩天的學習節奏</h2>
+        <p>兩天課程循序漸進，每階段專注完成一個可驗收的小成果。</p>
+      </div>
+      <div class="schedule" role="table" aria-label="課程時程">
+        <div class="schedule-row header" role="row"><div>時間</div><div>單元</div><div>帶走什麼</div></div>
+        <div class="schedule-row" role="row"><div class="time">Day 1 上午</div><div class="topic">從聊天到行動</div><div class="outcome">填寫官方前測、補完安裝並啟動 OpenClaw；理解 AI 助理從聊天到行動的差異，讓第一個任務成功執行。</div></div>
+        <div class="schedule-row" role="row"><div class="time">Day 1 下午</div><div class="topic">交代清楚、看證據除錯</div><div class="outcome">個人 MVP 畫布、任務三要素、證據導向除錯、模型與額度，完成一次「計畫 → 執行 → 檢查 → 回饋」。</div></div>
+        <div class="schedule-row" role="row"><div class="time">Day 2 上午</div><div class="topic">資料查證與本機 Skill</div><div class="outcome">查驗講師示範的網頁擷取、每人完成 CSV 分析；每人建立本機唯讀 Skill，並完成三個測試案例。</div></div>
+        <div class="schedule-row" role="row"><div class="time">Day 2 下午</div><div class="topic">串接並驗收 MVP</div><div class="outcome">每人建立 Telegram 測試 Bot 並完成人工核准；4 人小組互測、修正與組內展示，最後填寫官方後測。</div></div>
+      </div>
+      <div class="notice"><strong>Gemini 額度原則：</strong>課堂使用 Google AI Studio 免費方案的 Gemini 3.5 Flash Lite（每天 500 次，另有 3.1 Flash Lite 備援 500 次），每人都用自己的金鑰實機操作，全天估計約 50–90 次，額度足夠。對話太長時輸入 <code>/new</code> 開新對話；出現「The AI service needs a short break」就等 30 秒再送；每日額度在台灣時間下午 4 點重置。環境卡關時仍可結對完成查證、提示改寫、流程設計與驗收。</div>
+    </section>
+
+    <section>
+      <div class="prompt-card">
+        <span class="eyebrow">A working habit</span>
+        <h2>好的 AI 協作，從一個清楚的需求開始。</h2>
+        <p>不需要背複雜咒語。先把你真正要解決的問題、已知的資訊與期待的結果說明白，再讓 AI 協助你拆解與執行。</p>
+        <div class="prompt-grid">
+          <div><strong>我想做什麼？</strong><span>描述具體任務與對象。</span></div>
+          <div><strong>我已經知道什麼？</strong><span>提供資料、限制與背景。</span></div>
+          <div><strong>我如何判斷完成？</strong><span>定義格式、檢查方式與下一步。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prepare">
+      <div class="section-heading">
+        <span class="eyebrow">Before we meet</span>
+        <h2>課前先準備好這幾件事</h2>
+      </div>
+      <div class="cards three">
+        <article class="card"><span class="number">01</span><h3>帶自己的筆電</h3><p>請攜帶 Mac 或 Windows 筆電與電源線；需能安裝 Node.js：Mac 第一次裝 Homebrew、Windows 安裝 Node.js 都會要求輸入電腦密碼或允許變更（學校或公司管理的電腦可能被鎖）。</p></article>
+        <article class="card"><span class="number">02</span><h3>課前在家：下載與安裝</h3><p>請在<b>上課前</b>到 <a href="https://github.com/jlwustudio/openclaw-workshop-scu-2026" target="_blank" rel="noopener">https://github.com/jlwustudio/openclaw-workshop-scu-2026</a>，按綠色「Code」➔「Download ZIP」下載整份教材，依 <a href="day1-foundations.html#prepare">Day 1 S01</a> 安裝 Node.js 與 OpenClaw，並用個人 Gmail 完成 Google AI Studio 的專案與 API 金鑰（<a href="openclaw-install-guide.html#partA">安裝手冊 Part A</a>）；Mac 請用 Homebrew 安裝 Node.js。教室 Wi-Fi 多人同時下載會很慢，Day 1 第一節只用來檢查與補救。在家測試只要確認助理有回應即可，不用多聊：前一天下午 4 點之後的用量會算進上課當天的額度。</p></article>
+        <article class="card"><span class="number">03</span><h3>帳號與問題想法</h3><p>請準備個人 Gmail 與 AI Studio 金鑰（學校帳號可能無法建立專案）、登入 Telegram，並攜帶可接收驗證碼的手機；帶一個你想解決的校園問題。頁面頂端燈號可檢測 OpenClaw Gateway 是否連線。</p></article>
+      </div>
+      <div style="margin-top: 16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <button type="button" class="btn-modal-trigger violet" data-modal-target="#modal-sys-reqs" data-modal-title="💻 筆電設備與環境檢測細節">🔍 點此查看：系統需求說明</button>
+        <a href="openclaw-install-guide.html" class="btn-script" style="color:#184da3; border-color:#b3c9f9;">📖 開啟完整本機安裝手冊 ↗</a>
+      </div>
+      <div class="hero-actions" style="margin-top: 20px;"><a class="btn sun" href="survey-pre.html">課前自我檢核</a><a class="btn secondary" href="day1-foundations.html">直接進入 Day 1 講義</a></div>
+    </section>
+
+    <section>
+      <div class="notice">
+        <strong>完課提醒：</strong>
+        <p style="margin:6px 0 0 0;">需全程參與兩天課程，並填寫教學資源中心提供的<b>官方前測與後測表單</b>。本教材內的「課前自我檢核」與「課後回顧」只存在你的瀏覽器，不能取代官方表單。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap"><span>東吳大學 · 打造你的第一個 AI 助理</span><span>教材版本：2026 秋季工作坊</span></div></footer>
+
+  <!-- Modal Contents for Index Page -->
+  <div class="modal-template" id="modal-sys-reqs" data-title="💻 筆電設備與環境檢測細節">
+    <h4>系統需求</h4>
+    <ul>
+      <li><b>作業系統：</b>macOS 13+（Apple Silicon 或 Intel）或 Windows 10 22H2 / Windows 11（64-bit）。</li>
+      <li><b>記憶體：</b>建議 8GB RAM 以上。</li>
+      <li><b>權限：</b>安裝 Homebrew 或 Node.js 時會要求輸入電腦密碼或允許變更；裝好後日常操作用一般使用者帳號即可。不要隨意在指令前加 <code>sudo</code>。</li>
+    </ul>
+  </div>
+
+  <script src="assets/workshop.js"></script>
+</body>
+</html>

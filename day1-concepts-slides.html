@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>從聊天到行動｜Day 1 概念課投影片</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --ink: #2d231b; --muted: #736253; --paper: #fffdfa; --canvas: #faf6f0; --line: #eadbc8;
+      --navy: #42281d; --blue: #d96b27; --teal: #3b7a57; --mint: #e8f0e6; --violet: #a0522d;
+      --lavender: #f5ece3; --sun: #f59e0b; --coral: #e76f51; --soft: #fff4e6;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--canvas); color: var(--ink); font-family: var(--sans); }
+    body { overflow: hidden; }
+
+    .deck { position: relative; height: 100%; }
+    .slide { position: absolute; inset: 0; display: none; overflow-y: auto; padding: 72px 16px 84px; }
+    .slide.active { display: flex; }
+    .slide > .inner { margin: auto; width: 100%; max-width: 1080px; }
+
+    .kicker { display: inline-block; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--blue); font-weight: 800; font-size: clamp(.8rem, 1.4vw, 1rem); letter-spacing: .04em; }
+    h1 { margin: 18px 0 14px; font-size: clamp(2.2rem, 6vw, 4.6rem); line-height: 1.1; letter-spacing: -.04em; color: var(--navy); }
+    h2 { margin: 14px 0 22px; font-size: clamp(1.6rem, 4vw, 3rem); line-height: 1.2; letter-spacing: -.03em; color: var(--navy); }
+    p, li { font-size: clamp(1.05rem, 2.1vw, 1.55rem); line-height: 1.7; }
+    .lead { color: var(--muted); }
+    .big { font-size: clamp(1.3rem, 3vw, 2.2rem); font-weight: 800; color: var(--navy); line-height: 1.5; }
+    strong { color: var(--blue); }
+
+    .grid { display: grid; gap: 16px; }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card { background: var(--paper); border: 1.5px solid var(--line); border-radius: 22px; padding: 20px 22px; }
+    .card h3 { margin: 0 0 6px; font-size: clamp(1.15rem, 2.4vw, 1.75rem); color: var(--navy); }
+    .card p { margin: 0; font-size: clamp(.98rem, 1.8vw, 1.3rem); color: var(--muted); }
+    .emoji { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin-bottom: 8px; }
+    .callout { margin-top: 22px; padding: 16px 20px; border-radius: 18px; background: var(--soft); border-left: 6px solid var(--sun); font-weight: 700; }
+    .quote { margin-top: 22px; padding: 18px 22px; border-radius: 18px; background: var(--lavender); color: var(--navy); font-weight: 800; font-size: clamp(1.1rem, 2.4vw, 1.7rem); }
+
+    .flow { display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
+    .flow .card { flex: 1 1 160px; text-align: center; }
+    .flow .arrow { align-self: center; font-size: 1.8rem; color: var(--blue); font-weight: 900; }
+
+    .predict { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    .chip { padding: 8px 16px; border-radius: 999px; background: var(--paper); border: 1.5px solid var(--line); font-weight: 800; font-size: clamp(1rem, 2vw, 1.4rem); }
+    .chip.top { border-color: var(--blue); color: var(--blue); }
+
+    .dialog { display: grid; gap: 12px; }
+    .bubble { padding: 14px 18px; border-radius: 18px; background: var(--paper); border: 1.5px solid var(--line); font-size: clamp(1rem, 2vw, 1.35rem); line-height: 1.6; }
+    .bubble.agent { background: var(--mint); }
+    .bubble b { color: var(--navy); }
+
+    .quiz { display: grid; gap: 10px; margin-top: 6px; }
+    .quiz button { text-align: left; font: inherit; font-size: clamp(1rem, 2vw, 1.35rem); padding: 12px 16px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+    .quiz button.correct { border-color: var(--teal); background: var(--mint); font-weight: 800; }
+    .quiz button.wrong { border-color: var(--coral); opacity: .7; }
+    .answer { display: none; margin-top: 12px; padding: 12px 16px; border-radius: 14px; background: var(--mint); font-size: clamp(.98rem, 1.9vw, 1.3rem); }
+    .answer.show { display: block; }
+
+    .topbar { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; z-index: 5; }
+    .topbar a, .topbar button { font: inherit; font-size: .9rem; font-weight: 800; color: var(--navy); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; text-decoration: none; cursor: pointer; }
+    .topbar .tools { display: flex; gap: 8px; }
+    .topbar a { display: inline-flex; align-items: center; gap: 8px; }
+    .topbar a img { flex: none; border-radius: 6px; }
+    .bottombar { position: fixed; left: 0; right: 0; bottom: 0; padding: 0 16px 14px; z-index: 5; display: flex; align-items: center; gap: 12px; }
+    .progress { flex: 1; height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+    .progress span { display: block; height: 100%; width: 0; background: var(--blue); transition: width .25s; }
+    .count { font-weight: 800; color: var(--muted); font-size: .95rem; min-width: 56px; text-align: right; }
+    .nav-btn { font: inherit; font-weight: 900; font-size: 1.1rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--navy); cursor: pointer; }
+    .hint { color: var(--muted); font-size: .95rem; margin-top: 26px; }
+
+    @media (max-width: 760px) {
+      .g2, .g3, .g4 { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; }
+      .flow .arrow { transform: rotate(90deg); }
+      .slide { padding-top: 64px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="day1-foundations.html#concept"><img src="assets/favicon.svg" width="22" height="22" alt="">← 回 Day 1 講義</a>
+    <div class="tools">
+      <button type="button" id="btn-full" aria-label="全螢幕">全螢幕</button>
+    </div>
+  </div>
+
+  <main class="deck" id="deck">
+
+    <!-- 1 封面 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">Day 1 · S02 · 10:45–11:15</span>
+      <h1>把 AI 從「會回話」<br>變成「會做事」</h1>
+      <p class="big">LLM ➔ AI Agent ➔ Agentic AI</p>
+      <p class="lead">打造你的第一個 AI 助理｜東吳大學 115-1 自主學習微課程</p>
+      <p class="hint">← → 或空白鍵換頁 · 點畫面左右兩側也可以 · F 全螢幕</p>
+    </div></section>
+
+    <!-- 2 暖身 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">暖身</span>
+      <h2>你今天已經用過幾個 AI？</h2>
+      <div class="grid g4">
+        <div class="card"><div class="emoji">🔎</div><h3>搜尋建議</h3><p>自動補完下一個字</p></div>
+        <div class="card"><div class="emoji">🎵</div><h3>推薦下一首</h3><p>YouTube、Spotify</p></div>
+        <div class="card"><div class="emoji">🌐</div><h3>即時翻譯</h3><p>字幕、相機翻譯</p></div>
+        <div class="card"><div class="emoji">🎙️</div><h3>語音助理</h3><p>Siri、Google 助理</p></div>
+      </div>
+      <div class="callout">共通點：它們只會「回答」或「推薦」。今天要認識的，是會替你「動手做事」的 AI。</div>
+    </div></section>
+
+    <!-- 3 LLM -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">01 · 什麼是 LLM</span>
+      <h2>LLM：大型語言模型</h2>
+      <div class="grid g3">
+        <div class="card"><div class="emoji">大</div><h3>Large</h3><p>參數多、讀過的文字多，抓得住語言細節。</p></div>
+        <div class="card"><div class="emoji">語</div><h3>Language</h3><p>處理文字與符號：中文、英文、程式碼都算。</p></div>
+        <div class="card"><div class="emoji">模</div><h3>Model</h3><p>從大量資料學到語言規律的數學系統。</p></div>
+      </div>
+      <div class="quote">一台超強的文字預測引擎。</div>
+    </div></section>
+
+    <!-- 4 文字接龍與 Token -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">01 · 什麼是 LLM</span>
+      <h2>本質是一場超強的「文字接龍」</h2>
+      <p>看前面的字，猜下一個字最可能是什麼：</p>
+      <p class="big">「今天天氣真＿＿」</p>
+      <div class="predict"><span class="chip top">好 82%</span><span class="chip">熱 11%</span><span class="chip">糟 5%</span></div>
+      <div class="grid g2" style="margin-top:22px;">
+        <div class="card"><h3>🧩 Token</h3><p>模型把文字切成詞塊來讀：今天＋天氣＋真＋的＋很＋好。用量、費用都以 Token 計算。</p></div>
+        <div class="card"><h3>📏 Context Window</h3><p>一次能記住的長度有上限。對話太長時，最早交代的規則可能被「忘記」，適時開新對話。</p></div>
+      </div>
+    </div></section>
+
+    <!-- 5 幻覺 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">01 · 什麼是 LLM</span>
+      <h2>會生成，不會查證</h2>
+      <p>LLM 不是在查資料庫，而是把規律「壓縮」進模型。沒把握時，它會<strong>一本正經地說錯</strong>，這叫<strong>幻覺</strong>。</p>
+      <div class="callout">對策：把 LLM 當成「很會講的實習生」。好用，但重要的事要複查，也要它附上出處。</div>
+      <div class="quote">很會講，但關在罐子裡。</div>
+    </div></section>
+
+    <!-- 6 Agent -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">02 · 從 LLM 到 AI Agent</span>
+      <h2>Agent ＝ 大腦 ＋ 手腳</h2>
+      <div class="grid g2">
+        <div class="card"><div class="emoji">🧠</div><h3>LLM（大腦）</h3><p>很會想、很會講，但只能「說」，碰不到真實世界。</p></div>
+        <div class="card"><div class="emoji">🤖</div><h3>AI Agent（有手有腳）</h3><p>同一顆大腦，加上工具和眼睛，就能真的把事做完。</p></div>
+      </div>
+      <div class="grid g3" style="margin-top:16px;">
+        <div class="card"><h3>🌐 瀏覽器</h3><p>開網頁、抓公告重點</p></div>
+        <div class="card"><h3>📁 檔案系統</h3><p>讀寫你授權的資料夾</p></div>
+        <div class="card"><h3>💻 終端機</h3><p>執行指令與小程式</p></div>
+      </div>
+    </div></section>
+
+    <!-- 7 循環 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">02 · 從 LLM 到 AI Agent</span>
+      <h2>Agent 怎麼工作？想 ➔ 做 ➔ 看 ➔ 修</h2>
+      <div class="flow">
+        <div class="card"><div class="emoji">💭</div><h3>想</h3><p>拆解任務，決定用哪個工具</p></div>
+        <span class="arrow">➔</span>
+        <div class="card"><div class="emoji">🛠️</div><h3>做</h3><p>呼叫工具：開網頁、寫檔、跑指令</p></div>
+        <span class="arrow">➔</span>
+        <div class="card"><div class="emoji">👀</div><h3>看</h3><p>讀取結果，判斷成功或失敗</p></div>
+        <span class="arrow">➔</span>
+        <div class="card"><div class="emoji">🔁</div><h3>修</h3><p>出錯就換方法；成功就下一步</p></div>
+      </div>
+      <div class="quote">Agent ＝ 大腦（LLM）＋ 手腳（工具）＋ 不斷修正的循環。</div>
+    </div></section>
+
+    <!-- 8 人間 Agent -->
+    <section class="slide"><div class="inner">
+      <!-- 講師備註：由講師與一位學員示範，約 3 分鐘。重點是「沒有授權與資料，Agent 就做不到」。 -->
+      <span class="kicker">講師示範 · 人間 Agent</span>
+      <h2>Agent 沒有魔法</h2>
+      <div class="dialog">
+        <div class="bubble"><b>🗣️ 使用者：</b>幫我看看吉他社這星期有什麼活動？要花多少錢？</div>
+        <div class="bubble agent"><b>🤖 Agent：</b>我沒有社團資料的讀取權限。請提供「社團活動資料卡」並授權我讀取。</div>
+        <div class="bubble"><b>🗣️ 使用者：</b>好，授權你讀取這張資料卡，摘要給我。</div>
+        <div class="bubble agent"><b>🤖 Agent：</b>讀取完成：成發活動在本週五 19:00，城中 5117，資料卡寫「免費入場」。</div>
+      </div>
+      <div class="callout">Agent 要靠明確的授權、可靠的資料來源和可用的工具，才能完成任務。</div>
+    </div></section>
+
+    <!-- 9 Agentic -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">03 · 什麼是 Agentic AI</span>
+      <h2>交代一個目標，它自己想辦法完成</h2>
+      <div class="grid g3">
+        <div class="card"><h3>01 自主規劃</h3><p>你給目標，它自己拆成步驟。</p></div>
+        <div class="card"><h3>02 多步驟執行</h3><p>連續完成一串動作，不用一直下指令。</p></div>
+        <div class="card"><h3>03 自我修正</h3><p>中途出錯會發現並重試。</p></div>
+      </div>
+      <h3 style="margin:26px 0 10px; color:var(--navy); font-size:clamp(1.1rem,2.4vw,1.6rem);">自主程度光譜</h3>
+      <div class="flow">
+        <div class="card"><h3>一問一答</h3><p>純 LLM</p></div>
+        <span class="arrow">➔</span>
+        <div class="card"><h3>單步工具</h3><p>用一次工具做一件事</p></div>
+        <span class="arrow">➔</span>
+        <div class="card"><h3>多步自主</h3><p>給目標，自己連續完成</p></div>
+      </div>
+    </div></section>
+
+    <!-- 10 多代理與人在迴圈 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">03 · 什麼是 Agentic AI</span>
+      <h2>越自主，越要有人把關</h2>
+      <div class="grid g3">
+        <div class="card"><div class="emoji">🔍</div><h3>研究員 Agent</h3><p>上網檢索、抓資料</p></div>
+        <div class="card"><div class="emoji">✍️</div><h3>寫手 Agent</h3><p>把資料寫成草稿</p></div>
+        <div class="card"><div class="emoji">🧐</div><h3>檢查員 Agent</h3><p>校對格式、抓錯</p></div>
+      </div>
+      <div class="callout">人在迴圈（Human-in-the-loop）：刪檔、付費、寄信、處理個資等不可逆動作，一律「先問你，批准後才執行」。</div>
+    </div></section>
+
+    <!-- 11 OpenClaw -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">04 · OpenClaw</span>
+      <h2>跑在你自己電腦上的 AI 助理</h2>
+      <p class="lead">OpenClaw 本身不含大腦，採「自帶模型」架構，我們接上 Google Gemini 雲端模型當大腦。</p>
+      <div class="flow">
+        <div class="card"><div class="emoji">💻</div><h3>你的電腦</h3><p>OpenClaw 本體：瀏覽器、檔案、指令、Skills</p></div>
+        <span class="arrow">＋</span>
+        <div class="card"><div class="emoji">☁️</div><h3>大腦</h3><p>Google Gemini 雲端模型，負責思考與規劃</p></div>
+        <span class="arrow">＋</span>
+        <div class="card"><div class="emoji">🧑‍✈️</div><h3>你</h3><p>設定目標與界線、批准關鍵步驟、隨時喊停</p></div>
+      </div>
+    </div></section>
+
+    <!-- 12 守則 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">04 · 教室守則</span>
+      <h2>4 大教室守則</h2>
+      <div class="grid g2">
+        <div class="card"><h3>🔑 金鑰不外流</h3><p>API 金鑰、Token 就像密碼，不貼給別人、不上傳公開網路。今天你會第一次拿到自己的 Gemini API 金鑰。</p></div>
+        <div class="card"><h3>🔍 重要的事再確認</h3><p>AI 會一本正經說錯，產出一定要自己複查。</p></div>
+        <div class="card"><h3>⚠️ 不亂刪、不亂送、不亂裝</h3><p>刪檔與寄信先想清楚；只安裝講師審核過的 Skill。</p></div>
+        <div class="card"><h3>🔒 尊重隱私</h3><p>不讓 AI 讀取或外洩他人的私人資料與未公開校務訊息。</p></div>
+      </div>
+    </div></section>
+
+    <!-- 13 Quiz -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">隨堂 Quiz · 1 / 3</span>
+      <h2>LLM、AI Agent 與 Agentic AI 最大的差別？</h2>
+      <div class="quiz" data-answer="0">
+        <button type="button">(A) LLM 會回話，Agent 裝了手腳，Agentic AI 能自主完成任務</button>
+        <button type="button">(B) 費用不同：LLM 最貴，Agentic AI 完全免費</button>
+        <button type="button">(C) 只有 Agentic AI 會寫程式</button>
+        <button type="button">(D) 名字不同，本質完全一樣</button>
+      </div>
+      <div class="answer">✅ 答案 (A)：會回話的大腦 ➔ 裝上手腳 ➔ 自主拆步驟完成任務。</div>
+    </div></section>
+
+    <section class="slide"><div class="inner">
+      <span class="kicker">隨堂 Quiz · 2 / 3</span>
+      <h2>AI 助理準備刪除檔案或寄信時，你該怎麼做？</h2>
+      <div class="quiz" data-answer="2">
+        <button type="button">(A) 立刻拔掉電腦插頭</button>
+        <button type="button">(B) 閉上眼睛祈禱它不要做錯</button>
+        <button type="button">(C) 請它先講計畫，同意後再動手</button>
+        <button type="button">(D) 放著不管，AI 不會犯錯</button>
+      </div>
+      <div class="answer">✅ 答案 (C)：不可逆的動作要堅持人在迴圈，先審查計畫再批准。</div>
+    </div></section>
+
+    <section class="slide"><div class="inner">
+      <span class="kicker">隨堂 Quiz · 3 / 3</span>
+      <h2>OpenClaw 和「大腦（模型）」的關係？</h2>
+      <div class="quiz" data-answer="1">
+        <button type="button">(A) 內建最強模型，不需連網</button>
+        <button type="button">(B) OpenClaw 提供手腳與工具，大腦外接 Google Gemini</button>
+        <button type="button">(C) 它只有大腦，沒有任何工具</button>
+        <button type="button">(D) 一裝就會被 100GB 模型塞滿硬碟</button>
+      </div>
+      <div class="answer">✅ 答案 (B)：OpenClaw 是本機的手腳與記憶，大腦由雲端模型提供。</div>
+    </div></section>
+
+    <!-- 14 小結 -->
+    <section class="slide"><div class="inner">
+      <span class="kicker">小結</span>
+      <h2>今天先記住三句話</h2>
+      <div class="grid" style="gap:12px;">
+        <div class="quote" style="margin:0;">LLM：很會講的文字預測引擎，但關在罐子裡。</div>
+        <div class="quote" style="margin:0;">Agent：大腦＋手腳＋想做看修的循環。</div>
+        <div class="quote" style="margin:0;">Agentic AI：越自主，你越要當好把關的人。</div>
+      </div>
+      <div class="callout">休息後（10:45）：在教材資料夾啟動 OpenClaw，讓它做第一件事。</div>
+    </div></section>
+
+  </main>
+
+  <div class="bottombar">
+    <button type="button" class="nav-btn" id="btn-prev" aria-label="上一頁">‹</button>
+    <div class="progress"><span id="progress"></span></div>
+    <span class="count" id="count"></span>
+    <button type="button" class="nav-btn" id="btn-next" aria-label="下一頁">›</button>
+  </div>
+
+  <script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progress = document.getElementById('progress');
+    const count = document.getElementById('count');
+    let index = 0;
+
+    function show(i) {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => s.classList.toggle('active', n === index));
+      slides[index].scrollTop = 0;
+      progress.style.width = ((index + 1) / slides.length * 100) + '%';
+      count.textContent = (index + 1) + ' / ' + slides.length;
+      history.replaceState(null, '', '#' + (index + 1));
+    }
+    const next = () => show(index + 1);
+    const prev = () => show(index - 1);
+
+    const fromHash = parseInt(location.hash.slice(1), 10);
+    show(Number.isFinite(fromHash) ? fromHash - 1 : 0);
+    window.addEventListener('hashchange', () => {
+      const n = parseInt(location.hash.slice(1), 10);
+      if (Number.isFinite(n) && n - 1 !== index) show(n - 1);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+      else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+      else if (e.key === 'Home') show(0);
+      else if (e.key === 'End') show(slides.length - 1);
+      else if (e.key === 'f' || e.key === 'F') toggleFull();
+    });
+
+    document.getElementById('deck').addEventListener('click', (e) => {
+      if (e.target.closest('button, a')) return;
+      if (e.clientX > window.innerWidth / 2) next(); else prev();
+    });
+    document.getElementById('btn-next').addEventListener('click', next);
+    document.getElementById('btn-prev').addEventListener('click', prev);
+
+    let touchX = null;
+    document.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+      touchX = null;
+    });
+
+    function toggleFull() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+    document.getElementById('btn-full').addEventListener('click', toggleFull);
+
+    document.querySelectorAll('.quiz').forEach((quiz) => {
+      const answer = Number(quiz.dataset.answer);
+      const buttons = quiz.querySelectorAll('button');
+      const explanation = quiz.nextElementSibling;
+      buttons.forEach((btn, n) => btn.addEventListener('click', () => {
+        buttons.forEach((b, m) => {
+          b.classList.toggle('correct', m === answer);
+          b.classList.toggle('wrong', m === n && n !== answer);
+        });
+        explanation.classList.add('show');
+      }));
+    });
+  })();
+  </script>
+</body>
+</html>

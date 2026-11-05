@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>課後回顧｜打造你的第一個 AI 助理</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/workshop.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav" aria-label="主要導覽"><a class="brand" href="index.html"><img src="assets/favicon.svg" width="32" height="32" alt="">打造你的第一個 AI 助理</a><div class="nav-links"><a href="index.html">首頁</a><a href="day2-applications.html">Day 2</a></div></nav></header>
+  <section class="page-hero"><div class="wrap survey-shell"><span class="eyebrow">After the workshop</span><h1>回顧你帶走了什麼</h1><p class="lead">這份課後回顧約 3–5 分鐘，並可匯出你的專案企劃書。請依自己的真實感受與實作紀錄填答。</p><div class="notice"><strong>完課提醒：</strong>完課需填寫教學資源中心提供的<b>官方前測與後測表單</b>。本頁只存在你的瀏覽器，講師與主辦單位看不到，不能取代官方表單。</div></div></section>
+  <main class="wrap"><div class="survey-shell survey-card"><form data-survey="post">
+    <div class="survey-section"><h2>學習成果</h2>
+      <fieldset class="question"><legend>我能分辨一般聊天式 AI 與會使用工具的 AI 助理。</legend><div class="options"><label><input type="radio" required name="agent_understanding" value="1">1 · 還不清楚</label><label><input type="radio" name="agent_understanding" value="2">2 · 有一點概念</label><label><input type="radio" name="agent_understanding" value="3">3 · 大致理解</label><label><input type="radio" name="agent_understanding" value="4">4 · 有信心說明</label><label><input type="radio" name="agent_understanding" value="5">5 · 很有信心</label></div></fieldset>
+      <fieldset class="question"><legend>我有信心指揮 AI 協助完成一項明確任務。</legend><div class="options"><label><input type="radio" required name="task_confidence" value="1">1 · 還不清楚</label><label><input type="radio" name="task_confidence" value="2">2 · 有一點概念</label><label><input type="radio" name="task_confidence" value="3">3 · 大致理解</label><label><input type="radio" name="task_confidence" value="4">4 · 有信心嘗試</label><label><input type="radio" name="task_confidence" value="5">5 · 很有信心</label></div></fieldset>
+      <fieldset class="question"><legend>你完成了哪些操作？</legend><div class="options"><label><input type="radio" required name="practice_completion" value="基礎與多項進階">完成安裝／基本操作，並完成多項進階跟做</label><label><input type="radio" name="practice_completion" value="完成基礎">完成安裝或基本操作</label><label><input type="radio" name="practice_completion" value="部分完成">部分完成，需要後續練習或協助</label></div></fieldset>
+    </div>
+    <div class="survey-section"><h2>課程回饋</h2>
+      <fieldset class="question"><legend>哪一個內容最能幫助你理解 AI 助理？</legend><div class="options"><label><input type="radio" required name="most_helpful" value="安裝與基礎操作">安裝與基礎操作</label><label><input type="radio" name="most_helpful" value="提示工程與除錯">提示工程與除錯</label><label><input type="radio" name="most_helpful" value="網頁與資料整理">網頁與資料整理</label><label><input type="radio" name="most_helpful" value="Skills與外部串接">Skills 與外部串接</label></div></fieldset>
+      <fieldset class="question"><legend>這次的講師示範與學生跟做節奏，對你來說如何？</legend><div class="options"><label><input type="radio" required name="pace" value="太快">太快</label><label><input type="radio" name="pace" value="剛好">剛好</label><label><input type="radio" name="pace" value="太慢">太慢</label></div></fieldset>
+      <fieldset class="question"><legend>課後你對後續延伸開發或實踐校園 AI 助理的想法？</legend><div class="options"><label><input type="radio" required name="hackathon_interest" value="有意願持續深化專案">有意願持續深化專案或找夥伴協作</label><label><input type="radio" name="hackathon_interest" value="想先再練習">想先再練習工具或發想題目</label><label><input type="radio" name="hackathon_interest" value="以學習為主">這次以學習 AI 工具體驗為主</label></div></fieldset>
+      <div class="question"><label for="post-idea">如果你想把今天所學延伸成校園創新構想，會想處理什麼情境？（選填）</label><textarea id="post-idea" name="campus_idea" placeholder="例如：活動資訊、學習資源、行政流程、永續行動或其他觀察。"></textarea></div>
+      <div class="question"><label for="post-feedback">你希望下一次保留、調整或新增什麼內容？（選填）</label><textarea id="post-feedback" name="feedback"></textarea></div>
+    </div>
+
+    <div class="survey-section">
+      <h2>🚀 AI 助理專案企劃與實作檢核表</h2>
+      <p class="small-note">把兩天所學轉化為具體可行的專案企劃！填寫下方檢核表（涵蓋痛點分析、AI 技術架構、使用者測試數據與安全合規），可一鍵下載為 Markdown 專案企劃書（含 10 頁成果展示簡報骨架與安全檢核表）。</p>
+
+      <div class="card" style="margin-bottom: 20px; background: #fdfefe; border: 1.5px solid var(--blue);">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+          <div>
+            <label for="proposal-theme" style="font-weight:800; font-size:0.95rem; color:var(--navy); display:block; margin-bottom:4px;">🎯 選題方向</label>
+            <select id="proposal-theme" name="proposal_theme" style="width:100%; padding:9px 12px; border:1.5px solid var(--line); border-radius:10px; background:#fff; font-weight:700;">
+              <option value="永續校園">🌿 永續校園</option>
+              <option value="新服務點子">🚀 新服務點子</option>
+              <option value="流程改善" selected>⚡ 流程改善</option>
+              <option value="校園資源導讀">🧭 校園資源導讀</option>
+              <option value="自訂題目">✏️ 自訂題目</option>
+            </select>
+          </div>
+          <div>
+            <label for="proposal-title" style="font-weight:800; font-size:0.95rem; color:var(--navy); display:block; margin-bottom:4px;">💡 專案/AI 助理名稱</label>
+            <input id="proposal-title" name="proposal_title" type="text" placeholder="例如：SCU 跨校區選課與交通智慧助理" style="width:100%; padding:9px 12px; border:1.5px solid var(--line); border-radius:10px;">
+          </div>
+          <div>
+            <label for="proposal-team" style="font-weight:800; font-size:0.95rem; color:var(--navy); display:block; margin-bottom:4px;">👥 團隊/作者成員（姓名/系所）</label>
+            <input id="proposal-team" name="proposal_team" type="text" placeholder="例如：王小明(資管二)、陳小華(企管三)" style="width:100%; padding:9px 12px; border:1.5px solid var(--line); border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="assessment-grid">
+        <div class="assessment-card">
+          <h3>📌 1. 校園觀察與問題痛點</h3>
+          <p class="small-note">描述具體受影響對象、現狀低效流程與創新切入點。</p>
+          <label for="proposal-problem">痛點與需求描述</label>
+          <textarea id="proposal-problem" name="proposal_problem" placeholder="例如：學生想參與校園活動或跨校區修課，但資訊分散且接駁班次難估算，手動排課耗時且容易衝堂。"></textarea>
+        </div>
+
+        <div class="assessment-card">
+          <h3>🤖 2. AI 解決方案與系統架構</h3>
+          <p class="small-note">說明 OpenClaw Agent 如何整合 LLM、Skills 與資料庫。</p>
+          <label for="proposal-solution">AI 助理架構與技術選型</label>
+          <textarea id="proposal-solution" name="proposal_solution" placeholder="例如：以 OpenClaw 建立排課排程 Agent，串接課表 CSV 與校車時刻表，由 AI 進行衝堂過濾與替代課程推薦。"></textarea>
+        </div>
+
+        <div class="assessment-card" style="border-color:#d4e2ff;">
+          <h3>🧩 2A. 本機最小 Skill 規格</h3>
+          <p class="small-note">記錄自由文字輸入、唯一可讀檔案、來源回覆與「資料未記載」規則。</p>
+          <label for="proposal-skill">Skill 名稱、資料範圍與三個測試案例</label>
+          <textarea id="proposal-skill" name="proposal_skill" placeholder="例如：scu-campus-faq-helper；唯讀校園 FAQ.md；測試：可回答、資料缺漏、越權／個資請求。"></textarea>
+        </div>
+
+        <div class="assessment-card" style="border-color:#d4e2ff;">
+          <h3>💬 2B. 個人 Telegram 測試 Bot</h3>
+          <p class="small-note">不填 Token；只記錄白名單、待核准草稿與停用方式是否完成。</p>
+          <label for="proposal-telegram">Bot 安全驗收紀錄</label>
+          <textarea id="proposal-telegram" name="proposal_telegram" placeholder="例如：僅允許自己的帳號；收到問題後回傳含來源的待核准草稿；已確認停止 channel／撤銷 Token 的位置。"></textarea>
+        </div>
+
+        <div class="assessment-card">
+          <h3>📂 3. 允許讀取之校園資料來源</h3>
+          <p class="small-note">助理存取的公開規章、課表或行事曆檔案邊界。</p>
+          <label for="proposal-datasrc">資料來源與格式</label>
+          <textarea id="proposal-datasrc" name="proposal_datasrc" placeholder="例如：東吳大學開課時間表 CSV、校車即時時刻表、校園選課 FAQ.md。嚴禁讀取個人機敏個資。"></textarea>
+        </div>
+
+        <div class="assessment-card" style="border: 2px solid var(--teal); background: #f2fbf9;">
+          <h3>📊 4. 目標使用者測試與回饋數據</h3>
+          <p class="small-note">課後找 5–10 位目標使用者實測的真實數據與修正歷程；尚未測試就寫「尚未測試」。範例 CSV 是虛構資料，不能填入。</p>
+          <label for="proposal-usertest">測試數據與優化動作</label>
+          <textarea id="proposal-usertest" name="proposal_usertest" placeholder="格式示意：邀請［N］位目標使用者實測，［X］位完成任務，平均耗時［T］秒；根據回饋修正了［什麼］。"></textarea>
+        </div>
+
+        <div class="assessment-card" style="border: 2px solid var(--teal); background: #f2fbf9;">
+          <h3>🔁 4A. 課堂同儕測試與一次修正</h3>
+          <p class="small-note">由同學以你題目的三個測試案例（可回答、資料缺漏、越權請求）交叉測試。一次修正須修改 Skill 或資料，並以原題＋一題新的相似問題重測；只改問法不算修正。這是課堂驗收，不等於目標使用者測試。</p>
+          <label for="proposal-iteration">測試證據與修正紀錄</label>
+          <textarea id="proposal-iteration" name="proposal_iteration" placeholder="例如：自然提問時沒用到 Skill（原題失敗）；在 SKILL.md 的 description 加入「節能」關鍵字後，原題與組員新出的相似題都讀取 FAQ 並附來源（通過）。"></textarea>
+        </div>
+
+        <div class="assessment-card">
+          <h3>🔍 5. 必須由人工核對的關卡 (Human-in-the-loop)</h3>
+          <p class="small-note">哪些關鍵決策或外部推播絕不能讓 AI 私自決定？</p>
+          <label for="proposal-humancheck">人工審核條件</label>
+          <textarea id="proposal-humancheck" name="proposal_humancheck" placeholder="例如：加退選截止時間確認、選課清單最終送出、涉及個人身分核對，必須回傳官方出處由人工核准。"></textarea>
+        </div>
+
+        <div class="assessment-card">
+          <h3>🛡️ 6. 安全界線與行政院 AI 指引遵循</h3>
+          <p class="small-note">防幻覺出處標註、無個資洩漏與法規遵循機制。</p>
+          <label for="proposal-risk">合規與安全防護機制</label>
+          <textarea id="proposal-risk" name="proposal_risk" placeholder="例如：回答必附出處連結；無資料時不捏造；遵守校園個資防護並遵循行政院生成式 AI 參考指引。"></textarea>
+        </div>
+      </div>
+
+      <section class="survey-section" aria-labelledby="assessment-title">
+        <h3 id="assessment-title">驗收狀態與證據</h3>
+        <p>每項分別選擇狀態。只有選「實機完成」並填寫證據，匯出檔才會勾選；這是學員自評，仍須講師核對。模擬演練不能證明安裝、連線或權限生效。證據請填無個資的紀錄摘要或檔名，勿貼 Token。</p>
+        <div class="question">
+          <label for="assessment-sources">資料來源可追溯</label>
+          <select id="assessment-sources" name="assessment_sources">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-sources">證據／紀錄</label>
+          <textarea id="evidence-sources" name="evidence_sources" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+        <div class="question">
+          <label for="assessment-privacy">測試資料與紀錄已檢查個資</label>
+          <select id="assessment-privacy" name="assessment_privacy">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-privacy">證據／紀錄</label>
+          <textarea id="evidence-privacy" name="evidence_privacy" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+        <div class="question">
+          <label for="assessment-human">人工審閱與手動外送流程</label>
+          <select id="assessment-human" name="assessment_human">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-human">證據／紀錄</label>
+          <textarea id="evidence-human" name="evidence_human" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+        <div class="question">
+          <label for="assessment-tools">工作區及工具權限限制（含越界與提示注入測試）</label>
+          <select id="assessment-tools" name="assessment_tools">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-tools">證據／紀錄</label>
+          <textarea id="evidence-tools" name="evidence_tools" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+        <div class="question">
+          <label for="assessment-skill">Skill 載入與三個案例</label>
+          <select id="assessment-skill" name="assessment_skill">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-skill">證據／紀錄</label>
+          <textarea id="evidence-skill" name="evidence_skill" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+        <div class="question">
+          <label for="assessment-telegram">Telegram 白名單、拒絕未授權帳號與停用</label>
+          <select id="assessment-telegram" name="assessment_telegram">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-telegram">證據／紀錄</label>
+          <textarea id="evidence-telegram" name="evidence_telegram" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+        <div class="question">
+          <label for="assessment-mvp">個人 MVP 與測試後修正</label>
+          <select id="assessment-mvp" name="assessment_mvp">
+            <option value="pending">尚未完成</option><option value="simulated">模擬演練</option><option value="live">實機完成</option>
+          </select>
+          <label for="evidence-mvp">證據／紀錄</label>
+          <textarea id="evidence-mvp" name="evidence_mvp" placeholder="測試日期、輸入與結果、工具紀錄檔名、核對者"></textarea>
+        </div>
+      </section>
+      <div class="export-proposal-wrap" style="background: linear-gradient(135deg, #eef4ff 0%, #fdf8e8 100%); padding: 22px; border-radius: 18px; border: 1.5px solid var(--line);">
+        <h3 style="margin-bottom:8px; color:var(--navy);">📦 一鍵帶走 AI 助理專案企劃書 (Markdown)</h3>
+        <p style="margin-bottom:14px; color:var(--muted); font-size:0.95rem;">填寫上方項目後，點擊下方按鈕即可匯出包含 10 頁成果展示簡報骨架與 AI 安全檢核清單的 Markdown 檔。</p>
+        <button class="btn sun" id="btn-export-proposal" type="button" style="font-size:1.05rem; padding:12px 24px;">📥 下載專案企劃書 (.md)</button>
+      </div>
+    </div>
+
+    <button class="btn" type="submit" style="margin-top:20px;">儲存課後回顧</button><p class="submit-note">作答只暫存於這台瀏覽器，不會送出。</p><div class="result">已儲存。別忘了填寫教資中心的官方後測表單，才算完課。</div>
+  </form></div></main>
+  <footer class="footer"><div class="wrap"><span>課後回顧與企劃匯出</span><a href="index.html">回到教材首頁</a></div></footer><script src="assets/assessment.js"></script><script src="assets/workshop.js"></script>
+</body>
+</html>

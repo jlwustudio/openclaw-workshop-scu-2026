@@ -1,0 +1,8 @@
+{
+  "tools": {
+    "allow": ["read"],
+    "deny": ["write", "edit", "apply_patch", "group:runtime", "group:web", "group:ui", "group:automation", "group:messaging", "group:nodes", "group:sessions", "group:memory", "group:agents", "group:media", "group:plugins"],
+    "fs": { "workspaceOnly": true },
+    "elevated": { "enabled": false }
+  }
+}

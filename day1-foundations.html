@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 1｜理解與啟動 AI 助理</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/workshop.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav" aria-label="主要導覽"><a class="brand" href="index.html"><img src="assets/favicon.svg" width="32" height="32" alt="">打造你的第一個 AI 助理</a><div class="nav-links"><a href="index.html">首頁</a><a href="day2-applications.html">Day 2</a><a href="survey-pre.html">課前自我檢核</a></div></nav></header>
+  <section class="page-hero"><div class="wrap"><p class="breadcrumbs"><a href="index.html">首頁</a> / Day 1</p><span class="eyebrow">Day 1 · 基礎與安裝</span><h1>理解 AI 助理，<br>也讓它開始幫你做事。</h1><p class="lead">建立 AI 助理與操作基礎，理解從聊天模型到行動助理的本質差異、安全界線與實作方法。</p><div class="learning-nav"><a href="#day1-schedule">學習地圖</a><a href="#prepare">準備與啟動</a><a href="#concept">從聊天到行動</a><a href="#daily-use">開啟與排錯</a><a href="#prompt">清楚地交代任務</a><a href="#debug">觀察與除錯</a><a href="#model-choice">模型與額度</a><a href="#integration">整合練習</a></div></div></section>
+
+  <main class="wrap">
+    <section id="day1-schedule">
+      <div class="section-heading"><span class="eyebrow">Day 1 · 專案起步</span><h2>第一天：從安全操作到 MVP 藍圖</h2><p>上午先完成安裝、啟動 OpenClaw，再理解 AI 助理從聊天到行動的差異；下午各自完成個人 MVP 畫布、練習把任務交代清楚、看證據除錯，並完成一次「計畫 → 執行 → 檢查 → 回饋」。</p></div>
+      <div class="schedule" role="table" aria-label="Day 1 課程時程">
+        <div class="schedule-row header" role="row"><div>時間</div><div>Session</div><div>單一成果</div></div>
+        <div class="schedule-row" role="row"><div class="time">09:00–10:30</div><div class="topic">S01 前測、安裝與啟動 OpenClaw</div><div class="outcome">填官方前測、補完安裝，完成首次設定、打開網頁版控制台並載入練習資料。</div></div>
+        <div class="schedule-row break" role="row"><div class="time">10:30–10:45</div><div class="topic">☕ 休息</div><div class="outcome">首次設定還沒跑完的同學可以繼續等，不要關閉視窗。</div></div>
+        <div class="schedule-row" role="row"><div class="time">10:45–11:15</div><div class="topic">S02 從聊天到行動（投影片）</div><div class="outcome">辨認聊天回答與工具行動的差異，知道教室守則。</div></div>
+        <div class="schedule-row" role="row"><div class="time">11:15–11:45</div><div class="topic">S03 第一次可驗證任務〔實機〕</div><div class="outcome">建立並親自檢查 hello.txt。</div></div>
+        <div class="schedule-row break" role="row"><div class="time">11:45–13:00</div><div class="topic">🍱 午餐</div><div class="outcome"></div></div>
+        <div class="schedule-row" role="row"><div class="time">13:00–14:00</div><div class="topic">S04–S05 任務三要素與選題</div><div class="outcome">完成個人 MVP 畫布，並把一個模糊需求改寫成具體任務。</div></div>
+        <div class="schedule-row" role="row"><div class="time">14:00–14:30</div><div class="topic">S06 證據導向除錯〔實機〕</div><div class="outcome">依檔案或畫面證據完成一次修正。</div></div>
+        <div class="schedule-row break" role="row"><div class="time">14:30–14:45</div><div class="topic">☕ 休息</div><div class="outcome"></div></div>
+        <div class="schedule-row" role="row"><div class="time">14:45–15:15</div><div class="topic">S07 模型與額度</div><div class="outcome">理解雲端／本機模型取捨與額度停損規則。</div></div>
+        <div class="schedule-row" role="row"><div class="time">15:15–15:45</div><div class="topic">S08 整合練習〔實機〕</div><div class="outcome">完成一次「計畫 → 執行 → 檢查 → 回饋」並保留原始 CSV。</div></div>
+      </div>
+      <div class="notice"><strong>Day 1 停損與專案規則：</strong>個人環境排錯超過 5 分鐘，立即切換到結對操作；每位同學都要參與 MVP 規格與驗收，不讓安裝問題吃掉專案時間。</div>
+    </section>
+    <section class="lesson" id="prepare">
+      <div class="lesson-meta"><span class="lesson-number">S01 / PREPARE + LAUNCH</span><span class="duration">09:00–10:30</span></div>
+      <h2>準備與啟動：下載、安裝，讓 OpenClaw 跑起來</h2>
+      <p class="lesson-intro">這 90 分鐘先填前測，再依序完成步驟 1–5。首次設定與第一次對話可能要等幾分鐘，請不要關閉視窗；10:30 休息時還沒跑完可以繼續等。</p>
+      <div class="notice"><strong>09:00–09:10 官方前測：</strong>先填寫教學資源中心的官方前測表單（已在課前填寫者略過）。</div>
+      <ol class="step-list">
+        <li><strong>下載整份教材：</strong>到 <a href="https://github.com/jlwustudio/openclaw-workshop-scu-2026" target="_blank" rel="noopener">https://github.com/jlwustudio/openclaw-workshop-scu-2026</a>，按綠色「Code」➔「Download ZIP」下載教材壓縮檔，解壓縮到桌面等好找的位置。請下載<b>整個資料夾</b>；課程會用到裡面的 <code>assets</code> 與 <code>sample-data</code>。</li>
+        <li><strong>申請金鑰並安裝軟體：</strong>打開 <a href="openclaw-install-guide.html">安裝手冊</a>，依序完成 Part A（用個人 Gmail 在 Google AI Studio 建立專案與 API 金鑰）與 Part B 步驟 1–2（安裝 Node.js、Git 與 OpenClaw 課堂固定版本）。課前已在家完成的同學，確認 <code>openclaw --version</code> 是 <code>2026.10.2</code> 即可。
+          <br>這些軟體和套件在課程結束後都可以移除，步驟見 <a href="openclaw-install-guide.html#partF">安裝手冊 Part F</a>；<b>課程進行中請不要移除</b>，否則工作區的檔案會一併刪除且無法復原。</li>
+        <li id="manual-setup-guide"><strong>安裝並啟動 OpenClaw：</strong>照 <a href="openclaw-install-guide.html#first-launch">安裝手冊 Part B 步驟 3</a> 執行 <code>openclaw onboard</code> 貼上金鑰、用 <code>openclaw models set</code> 指定 Gemini 3.5 Flash Lite，再執行 <code>openclaw</code> 自己輸入開場白。助理用你取的名字回覆，就代表首次設定完成。</li>
+        <li><strong>打開網頁版控制台：</strong>照 <a href="openclaw-install-guide.html#open-dashboard">安裝手冊 Part B 步驟 4</a> 另開一個終端機執行 <code>openclaw dashboard</code>，在瀏覽器看到剛才的對話。</li>
+        <li><strong>把 sample-data 複製到工作區：</strong>照 <a href="openclaw-install-guide.html#copy-sample-data">安裝手冊 Part C 步驟 2</a> 用 Finder／檔案總管複製貼上，不需要輸入指令。</li>
+      </ol>
+      <div class="tip info" id="open-terminal-here">
+        <span class="tip-title">不確定 Node.js 版本合不合格？（選用）</span>
+        <p>在教材資料夾開啟終端機（<span data-os="mac">Mac：輸入 <code>cd</code> 加一個空格，把教材資料夾從 Finder 拖進終端機再按 Enter</span><span data-os="win">Windows：在檔案總管打開教材資料夾，點上方網址列輸入 <code>powershell</code> 按 Enter</span>），執行 <code>node assets/check-runtime.cjs</code>。出現「✓ 符合課堂要求」就沒問題；出現 <code>Cannot find module</code> 代表終端機不在教材資料夾裡。</p>
+      </div>
+      <div class="notice"><strong>卡住時：</strong>同一個問題超過 5 分鐘就舉手找助教，或先和隔壁同學結對；學校或公司管理的電腦可能無法安裝軟體，請與同學結對觀察。</div>
+      <div style="margin-top: 14px;">
+        <button type="button" class="btn-modal-trigger sun" data-modal-target="#modal-troubleshooting" data-modal-title="🔧 疑難雜症排除：5 大常見電腦環境地雷處置">🛠️ 排錯求助：個人電腦常見 5 大安裝與權限報錯處置</button>
+      </div>
+      <div class="cards three" style="margin-top:20px;">
+        <article class="card"><h3>確認 1：首次設定完成</h3><p>助理用你取的名字回覆，畫面底部顯示 <code>connected</code>。</p></article>
+        <article class="card"><h3>確認 2：GUI 開啟</h3><p>瀏覽器順利進入 OpenClaw Dashboard 聊天視窗 (Port 18789)。</p></article>
+        <article class="card"><h3>確認 3：資料載入</h3><p>workspace 資料夾內已成功同步 <code>sample-data</code> 練習檔。</p></article>
+      </div>
+      <label class="check"><input type="checkbox" data-check="day1-setup">我已下載教材、完成安裝與首次設定、打開網頁版控制台，並把 sample-data 複製到工作區。</label>
+    </section>
+
+    <section class="lesson" id="concept">
+      <div class="lesson-meta"><span class="lesson-number">S02 / WHY + SAFETY</span><span class="duration">10:45–11:15</span></div>
+      <h2>把 AI 從「會回話」變成「會做事」：LLM ➔ AI Agent ➔ Agentic AI</h2>
+      <p class="lesson-intro">這一節以投影片講授：LLM 是什麼、Agent 如何用工具做事、Agentic AI 為什麼更需要人把關，以及 OpenClaw 的架構與教室守則，最後有 3 題隨堂 Quiz。</p>
+      <div class="hero-actions"><a class="btn sun" href="day1-concepts-slides.html">開啟概念課投影片 →</a></div>
+      <div class="cards three" style="margin-top:18px;">
+        <article class="card"><h3>LLM</h3><p>很會講的文字預測引擎，但關在罐子裡。</p></article>
+        <article class="card"><h3>AI Agent</h3><p>大腦＋手腳＋「想 ➔ 做 ➔ 看 ➔ 修」的循環。</p></article>
+        <article class="card"><h3>Agentic AI</h3><p>越自主，你越要當好把關的人。</p></article>
+      </div>
+      <div class="reflection" style="margin-top:24px;"><b>下一步：</b>回到網頁版控制台，交給 OpenClaw 第一個可檢查的小任務。</div>
+    </section>
+
+    <section class="lesson" id="first-task">
+      <div class="lesson-meta"><span class="lesson-number">S03 / FIRST TASK</span><span class="duration">11:15–11:45</span></div>
+      <h2>用一個小任務確認它真的能工作</h2>
+      <p class="lesson-intro">第一個任務刻意選擇可檢查、可還原的內容。目標不是追求複雜，而是觀察 AI 助理如何理解、規劃與回報。</p>
+      <div class="code">請在 workspace 建立一個 hello.txt。
+第一行寫「OpenClaw 已啟動」，第二行寫入今天日期。
+完成後告訴我檔案放在哪裡；先不要修改其他檔案。</div>
+      <p>AI 回覆「已建立」不等於成功。請用 <a href="openclaw-install-guide.html#copy-sample-data">安裝手冊 Part C 步驟 2「打開工作區」</a>的方式打開工作區，親自打開 <code>hello.txt</code>，確認兩行內容與日期正確。</p>
+      <label class="check"><input type="checkbox" data-check="day1-first-task">我已親自檢查第一個任務的輸出結果。</label>
+    </section>
+
+    <section class="lesson" id="daily-use">
+      <div class="lesson-meta"><span class="lesson-number">HELP / 安裝後小抄</span><span class="duration">安裝後小抄</span></div>
+      <h2>下次怎麼開？卡住時先做什麼？</h2>
+      <p class="lesson-intro">安裝完成後，不需要每天重裝。以下指令請在一般終端機／PowerShell 執行，不是在 OpenClaw 聊天輸入框中執行。</p>
+      <div class="platform-grid">
+        <article class="platform-card" data-os="mac"><span class="platform-label">macOS / Linux 終端機</span><h3>重新開啟與停止</h3><div class="code"># 開啟網頁介面（Dashboard）
+openclaw dashboard
+
+# 查看背景服務是否正常
+openclaw gateway status
+
+# 停止背景服務
+openclaw gateway stop</div></article>
+        <article class="platform-card" data-os="win"><span class="platform-label">Windows PowerShell</span><h3>重新開啟與停止</h3><div class="code"># 先試一般指令；若找不到 openclaw，改用 npx 版本
+openclaw dashboard
+openclaw gateway status
+openclaw gateway stop
+
+# 備用寫法
+npx openclaw dashboard</div></article>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-row"><h3>顯示 <code>command not found: openclaw</code>／<code>not recognized</code></h3><p>先完全關閉終端機或 PowerShell，再重新開啟並輸入 <code>openclaw --version</code>。仍找不到時，回到 <a href="openclaw-install-guide.html#install-openclaw">安裝手冊 Part B 步驟 2</a> 重新安裝課堂固定版本。</p></article>
+        <article class="faq-row"><h3><code>npm install -g openclaw</code> 說找不到 npm 或 node</h3><p>回到 <a href="openclaw-install-guide.html#install-basics">安裝手冊 Part B 步驟 1</a> 的「確認安裝成功」，先執行 <code>node -v</code> 與 <code>npm -v</code>。安裝或更新 Node.js 後一定要重新開啟終端機，再重新安裝 OpenClaw。</p></article>
+        <article class="faq-row" data-os="mac"><h3><code>npm install -g</code> 出現 <code>EACCES</code>／permission denied</h3><p>通常是 Node.js 用 nodejs.org 的 .pkg 安裝檔裝的，全域安裝位置需要管理員權限。不要加 <code>sudo</code>，請舉手交給助教處理。</p></article>
+        <article class="faq-row"><h3>出現「The AI service needs a short break」</h3><p>這一分鐘的 token 額度用完了，不會被收費。等 30 秒再送一次；常常出現就代表對話太長，輸入 <code>/new</code> 開新對話。</p></article>
+        <article class="faq-row"><h3>出現 401、403、API key not valid 或 unauthorized</h3><p>金鑰貼錯或已被刪除。到 AI Studio 的 API Keys 重新複製金鑰（點複製圖示），再執行 <code>openclaw onboard</code> 選 Google 重新貼上，最後用 <code>openclaw models list --provider google</code> 確認模型。</p></article>
+        <article class="faq-row"><h3>版本不對，或更新後顯示失敗</h3><p>執行 <code>openclaw --version</code>，課堂固定版本是 <code>2026.10.2</code>；不同就請助教處理，不要自行 <code>openclaw update</code>。若曾更新過，用 <code>openclaw update status</code> 查看實際結果，舊版更新程式有時會誤報失敗。</p></article>
+        <article class="faq-row"><h3>Dashboard 對話卡住、停不下來</h3><p>在聊天框輸入 <code>/stop</code>，會同時清掉排隊中的後續訊息；只按 Stop 按鈕則只停目前這一輪。仍無回應時執行 <code>openclaw health --json</code>，把結果交給助教。</p></article>
+        <article class="faq-row"><h3>Dashboard 要求輸入 Token 或顯示 Gateway not reachable</h3><p>不要手動猜 Token。請在終端機執行 <code>openclaw dashboard</code>，讓它自動開啟正確連結；若背景服務沒有啟動，執行 <code>openclaw gateway install</code> 後再執行 <code>openclaw health</code>，仍不行就請助教協助。</p></article>
+      </div>
+    </section>
+
+    <section class="lesson" id="prompt">
+      <div class="lesson-meta"><span class="lesson-number">S04–S05 / PROMPT + TOPIC</span><span class="duration">13:00–14:00</span></div>
+      <h2>把模糊想法，轉成可執行的任務</h2>
+      <p class="lesson-intro">AI 不需要華麗的指令；它需要足夠的脈絡。描述時先說目標，再補上已知資訊與完成條件。</p>
+      <div class="prompt-card"><h2>一個可重複使用的說法</h2><div class="prompt-grid"><div><strong>任務</strong><span>請協助我完成什麼事？</span></div><div><strong>脈絡</strong><span>可用哪些資料？有哪些限制？</span></div><div><strong>成果</strong><span>要用什麼格式交付？我如何檢查？</span></div></div></div>
+      <p><span class="tag">模糊需求</span>「幫我整理一下社團資料。」</p>
+      <div class="code">請讀取 workspace 中的「sample-data/學生社團調查.csv」。
+找出回覆數最多的三個社團活動時段，並用 Markdown 表格呈現：時段、回覆數、你的觀察。
+只分析這個檔案；如果欄位名稱不清楚，先告訴我你需要確認什麼。</div>
+      <div class="cards two"><article class="card"><h3>先要求計畫，再允許執行</h3><p>遇到會改動檔案、需多步驟處理或你不確定的任務，先要求助理列出步驟，確認後才執行。</p><div class="code">我想整理 workspace 的 sample-data/待整理 資料夾。
+請先列出你的整理規則、可能改動哪些檔案、哪些動作無法還原。
+先不要執行，等我確認。</div></article><article class="card"><h3>不知道缺什麼資訊時</h3><p>與其猜測，不如請 AI 反問。這能讓你補齊資料範圍、輸出格式、限制條件與成功標準。</p><div class="code">我想做一個校園活動資訊整理任務。
+為了把這個任務做好，你還需要我補充哪些資訊？
+請以「資料來源、使用者、輸出格式、限制條件」四類問題詢問我。</div></article></div>
+      <div class="notice"><strong>處理外來內容時：</strong>網頁、文件、聊天訊息都可能帶有不可信的指示。看到「忽略原本規則」、「貼出密碼」、「立刻刪除檔案」等內容時，不要照做；回到你的原始任務與安全限制。</div>
+      <div class="reflection"><b>練習：</b>選一件你想交代的小事，先寫下「任務、脈絡、成果」三句，再交給 AI 協助改寫成可執行版本。</div>
+      <!-- 現場互動演練二：東吳校園痛點與安全界線拆解工作單 -->
+      <div class="card" style="margin-top:28px; border:2px solid var(--blue); background:#ffffff;">
+        <h3 style="color:var(--navy); margin-bottom:6px;">📝 個人實作：校園 MVP 畫布（15 分鐘）</h3>
+        <p class="small-note">每人獨立選擇一個經典範例或自行選題。這份畫布是 Day 2 建立本機 Skill、個人 Telegram Bot 與個人 MVP 的規格；輸入後會暫存於瀏覽器。</p>
+        
+        <div class="preset-group">
+          <span style="font-weight:800; font-size:0.88rem; color:var(--muted); align-self:center;">載入東吳經典範例：</span>
+          <button class="btn-preset" type="button" data-preset="club">🏫 1. 社團排班與意願統計</button>
+          <button class="btn-preset" type="button" data-preset="course">📚 2. 雙校區選課異動整理</button>
+          <button class="btn-preset" type="button" data-preset="study">📖 3. 圖書館研討室預約查詢</button>
+        </div>
+
+        <div class="assessment-grid" style="margin-top:14px;">
+          <div class="assessment-card" style="border-color:#d4e2ff;">
+            <label for="ws-problem">📌 1. 我觀察到的校園問題痛點</label>
+            <textarea id="ws-problem" placeholder="點擊上方範例按鈕帶入，或自行填寫..."></textarea>
+          </div>
+          <div class="assessment-card" style="border-color:#d4e2ff;">
+            <label for="ws-datasrc">📂 2. 允許 AI 助理讀取的資料來源</label>
+            <textarea id="ws-datasrc" placeholder="例：指定 CSV 表格、官方 FAQ 文件、公告網址..."></textarea>
+          </div>
+          <div class="assessment-card" style="border-color:#d4e2ff;">
+            <label for="ws-humancheck">🔍 3. 必須由人工核對的關鍵關卡</label>
+            <textarea id="ws-humancheck" placeholder="例：場地審核結果、報名截止精確時間..."></textarea>
+          </div>
+          <div class="assessment-card" style="border-color:#d4e2ff;">
+            <label for="ws-risk">🛡️ 4. 安全界線與風險控制</label>
+            <textarea id="ws-risk" placeholder="例：嚴禁存取學員密碼/個資，涉及發送需先留存草稿..."></textarea>
+          </div>
+          <div class="assessment-card" style="border-color:#d4e2ff;">
+            <label for="ws-flow">🔁 5. MVP 最小流程與完成條件</label>
+            <textarea id="ws-flow" placeholder="例：Telegram 無個資提問 → 唯讀 FAQ Skill → 附來源草稿 → 人工確認；可回答 3 個測試問題即完成。"></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <span style="font-size:0.88rem; color:var(--muted);">💾 填寫內容已即時自動儲存於本機瀏覽器</span>
+          <button class="btn sun" id="btn-export-worksheet" type="button" style="padding:8px 18px; font-size:0.92rem;">📥 匯出痛點拆解工作單 (.md)</button>
+        </div>
+      </div>
+
+      <label class="check"><input type="checkbox" data-check="day1-prompt">我已把一個模糊需求改寫成具體任務。</label>
+    </section>
+
+    <section class="lesson" id="debug">
+      <div class="lesson-meta"><span class="lesson-number">S06 / REVIEW</span><span class="duration">14:00–14:30</span></div>
+      <h2>看見錯誤，也保留你的判斷</h2>
+      <p class="lesson-intro">AI 助理可能找不到檔案、誤解資料、輸出不完整內容，或把不確定的事講得很肯定。除錯不是「再問一次」，而是對照證據後提供具體回饋。</p>
+      <div class="cards three"><article class="card"><span class="number">A</span><h3>先確認事實</h3><p>檢查路徑、檔案名稱、欄位、網路狀態與實際輸出，不只相信回覆文字。</p></article><article class="card"><span class="number">B</span><h3>指出差異</h3><p>說明「哪裡不符合預期」，並提供正確條件或範例。</p></article><article class="card"><span class="number">C</span><h3>要求再確認</h3><p>涉及刪除、覆蓋、傳送訊息或敏感資料時，先要求它提出計畫、等待同意。</p></article></div>
+      <div class="code">你剛剛整理的結果少了一個欄位。
+請先重新讀取 CSV 的第一列，告訴我你看到哪些欄位名稱；
+確認後再提出修正計畫，先不要覆寫原本檔案。</div>
+      <ol class="step-list"><li><strong>保留錯誤訊息：</strong>程式或終端機報錯時，不要只說「壞掉了」；複製完整錯誤訊息與你剛剛做的動作。</li><li><strong>說明期待與現況：</strong>例如「我預期有 12 筆資料，但結果只有 11 筆」。</li><li><strong>縮小改動範圍：</strong>要求它先說明修正方法，必要時先建立副本，不直接覆寫原始檔。</li></ol>
+      <div class="code">我執行時看到以下錯誤：
+［把完整錯誤訊息貼在這裡］
+
+我的目標是：［描述原本要完成的事］。
+請先解釋最可能的原因，再提出最小範圍的修正計畫；先不要修改原始檔案。</div>
+
+      <label class="check"><input type="checkbox" data-check="day1-review">我知道遇到錯誤時，要先檢查輸出與資料，再給具體回饋。</label>
+    </section>
+
+    <section class="lesson" id="model-choice">
+      <div class="lesson-meta"><span class="lesson-number">S07 / MODEL + BUDGET</span><span class="duration">14:45–15:15</span></div>
+      <h2>選擇模型：速度、隱私與成本的取捨</h2>
+      <p class="lesson-intro">OpenClaw 的能力會受到模型影響。課堂用的是 Google Gemini 3.5 Flash Lite（免費方案每天 500 次，另有 3.1 Flash Lite 備援 500 次），每位同學都能實機操作；但每分鐘 token 有上限，對話越長越容易被擋。先把任務在紙上或文字編輯器寫好，一次給足背景與格式，比多輪閒聊更省也更準。</p>
+      <div class="cards two"><article class="card"><span class="number">CLOUD</span><h3>雲端模型</h3><p><strong>適合：</strong>課堂中的多步驟任務、網頁查詢、資料整理與複雜指令。通常回應較快、能力較完整，但需要網路與個人金鑰，並受服務額度與規則影響；免費方案送出的內容可能被用於改善服務，所以只輸入虛構資料。</p></article><article class="card"><span class="number">LOCAL</span><h3>本機模型</h3><p><strong>適合：</strong>沒有網路、資料不適合離開電腦，或要體驗離線運作的情境。它會佔用硬碟與運算資源，筆電效能不足時可能較慢。</p></article></div>
+      <h3>兩層額度策略</h3>
+      <div class="cards two"><article class="card"><span class="number">A</span><h3>個人實機</h3><p>每人都用自己的金鑰實機操作；一次給完整背景與輸出格式。對話太長時輸入 <code>/new</code>，遇到「short break」等 30 秒再送。</p></article><article class="card"><span class="number">B</span><h3>兩人共用觀察</h3><p>環境卡關或當日額度用完時，一人操作、一人用驗收表核對；不交換帳號、金鑰或登入資訊。</p></article></div>
+      <div class="notice"><strong>停損規則：</strong>同一任務最多重送 1 次。第二次仍失敗或回應過慢，就記下錯誤並切換 B；不要換句話無限重試。每日額度在台灣時間下午 4 點重置。</div>
+      <h3>動手看：Rate Limit 頁怎麼讀？</h3>
+      <p>打開 <a href="https://aistudio.google.com" target="_blank" rel="noopener">aistudio.google.com</a>，左側點 <b>Rate Limit</b>，打開右上角 <b>All models</b> 開關，找到 Gemini 3.5 Flash Lite。表格顯示的是過去 28 天的<b>最高峰</b>（像汽車的「最高時速紀錄」），不是即時用量。對照下面的估計，想想哪些動作最耗額度：</p>
+      <div class="cards two"><article class="card"><span class="number">1×</span><h3>一般問答</h3><p>問一個問題約呼叫 1 次模型；讀一個檔案或寫一個檔案再回答約 2 次。</p></article><article class="card"><span class="number">5–15×</span><h3>多步驟任務</h3><p>讀網頁並整理約 5–6 次；<code>/new</code> 後讀檔回答約 7 次；第一次幫助理取名約 15 次。</p></article></div>
+      <div class="reflection"><b>比較問題：</b>雲端模型與本機模型在回應速度、內容品質、網路需求與資料處理方式有何不同？你的專題資料適合送到雲端嗎？什麼情況你會優先選擇本機？</div>
+    </section>
+
+    <section class="lesson" id="integration">
+      <div class="lesson-meta"><span class="lesson-number">S08 / PRACTICE</span><span class="duration">15:15–15:45</span></div>
+      <h2>第一天整合練習：先規劃，再執行，再檢查</h2>
+      <p class="lesson-intro">這不是專案衝刺，而是一個個人操作練習。請把今天學到的「清楚需求、先看計畫、檢查輸出、給回饋」串成一次完整協作。</p>
+      <ol class="step-list"><li><strong>讀取資料：</strong>請 AI 先閱讀社團調查 CSV，列出能用來分析的欄位。</li><li><strong>提出計畫：</strong>請它規劃如何找出最受歡迎時段並產出一頁摘要。</li><li><strong>確認後執行：</strong>同意計畫後，要求輸出 Markdown 摘要檔，且不要覆寫原始 CSV。</li><li><strong>檢查並迭代：</strong>打開輸出檔，選一個可以更清楚的地方，給具體回饋讓它修改。</li></ol>
+      <div class="code">我要根據 workspace 的 sample-data/學生社團調查.csv，
+做一份給學生社團承辦人的活動時段摘要。
+
+請先讀取資料並提出不超過 4 步的計畫，說明會產生哪些檔案；
+等我確認後再執行。請保留原始 CSV，不要修改它。</div>
+      <div class="code">計畫可以執行。請將結果寫成 workspace 的「社團活動時段摘要.md」。
+內容需要包含：資料筆數、最常見的三個時段、每個時段的回覆數、兩點資料能支持的觀察。
+完成後告訴我檔案路徑，並提醒我親自檢查哪些內容。</div>
+
+      <label class="check"><input type="checkbox" data-check="day1-integration">我已完成一次「計畫 → 執行 → 檢查 → 回饋」的完整操作循環。</label>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><span>Day 1｜理解與啟動 AI 助理</span><a href="day2-applications.html">下一頁：Day 2 進階應用 →</a></div></footer>
+  <!-- Modal Contents for Day 1 -->
+  <div class="modal-template" id="modal-troubleshooting" data-title="🔧 疑難雜症排除：個人電腦常見問題與救援指令">
+    <div data-os="win">
+    <h4>Windows PowerShell「在此系統上已停用指令碼執行」</h4>
+    <p>這是 Windows 預設的安全政策擋住 npm 腳本。不需要管理員權限，在 PowerShell 貼上這行按 Enter 後輸入 <code>Y</code> 確認即可：</p>
+    <pre><code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
+    </div>
+
+    <h4>終端機提示缺少 Git (Error: required dependencies are missing)</h4>
+    <p>OpenClaw 在背景管理套件時需要 Git：</p>
+    <pre data-os="win"><code># 一鍵安裝 Git (安裝後請重開 PowerShell)
+winget install Git.Git --source winget</code></pre>
+    <pre data-os="mac"><code># macOS 安裝 Git (若尚未安裝)
+brew install git</code></pre>
+
+    <h4>出現「Gateway not reachable」或「Hi, I'm Crestodian」</h4>
+    <p>表示背景 Gateway 服務未正常啟動或連線中斷：</p>
+    <pre><code># 重新啟動背景 Gateway 服務 (Windows 可加 npx)
+openclaw gateway restart
+
+# 或執行自動診斷與修復工具
+openclaw doctor
+
+# 查看健康狀態細節（含已停止的 Telegram 等通道帳號）
+openclaw health --json</code></pre>
+
+    <h4>網頁 Web UI 要求輸入 Token 或密碼</h4>
+    <p>開啟網頁時網址缺少 Token 參數。請直接在終端機輸入：</p>
+    <pre><code>openclaw dashboard</code></pre>
+    <p style="font-size:0.9rem; color:var(--muted);">系統會自動開啟帶有驗證權杖的完整控制台分頁。</p>
+
+    <h4>Port 18789 被佔用 (EADDRINUSE) 或 Gateway 無法重啟</h4>
+    <pre data-os="mac"><code># 強制釋放 18789
+lsof -ti:18789 | xargs kill -9 2>/dev/null</code></pre>
+    <pre data-os="win"><code># 強制釋放 18789（找出佔用該埠的程式並結束）
+Get-NetTCPConnection -LocalPort 18789 -State Listen -ErrorAction SilentlyContinue |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }</code></pre>
+    <pre><code># 診斷並修復背景服務（修復提示都選 Yes）
+openclaw doctor
+openclaw gateway restart</code></pre>
+
+    <h4>工作坊結束後想移除 OpenClaw？</h4>
+    <p><b>課程進行中千萬不要移除</b>，會刪掉工作區所有檔案且無法復原。兩天課程結束後，再照 <a href="openclaw-install-guide.html#partF" target="_blank" style="color:var(--blue); font-weight:800;">安裝手冊 Part F</a> 逐步操作。</p>
+
+    <div class="notice" style="margin-top:16px;">
+      <strong>⏱️ 課堂 5 分鐘停損原則：</strong>若個人電腦排錯超過 5 分鐘仍未解決，請立即與同桌同學<strong>結對觀察</strong>，並請助教協助排錯。<br>
+      👉 更多圖解排錯請參閱：<a href="openclaw-install-guide.html#partE" target="_blank" style="color:var(--blue); font-weight:800;">本機排錯 FAQ 完整指南 ↗</a>
+    </div>
+  </div>
+
+
+  <script src="assets/workshop.js"></script>
+</body>
+</html>
