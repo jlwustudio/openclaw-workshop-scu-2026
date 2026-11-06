@@ -18,4 +18,4 @@
 
 ## Day 2 Skill 與安全驗收
 
-請依 [課堂唯讀設定](../workshop-config/README.md) 建立獨立工作區，只複製 FAQ、選題靈感案例庫與 [SKILL.md 成品](../skills/scu-campus-faq-helper/SKILL.md)，不要把整份練習資料當作單一檔案的權限限制。
+請依 [課堂唯讀設定](../workshop-config/README.md) 建立獨立工作區，只複製 FAQ 與選題靈感案例庫，並照 [本機最小 Skill 範本](本機最小Skill範本.md) 自己建立 `SKILL.md`，不要把整份練習資料當作單一檔案的權限限制。

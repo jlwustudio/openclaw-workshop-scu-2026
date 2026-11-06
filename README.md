@@ -34,6 +34,6 @@
 | 課前自我檢核 | https://jlwustudio.github.io/openclaw-workshop-scu-2026/survey-pre.html |
 | 課後回顧與企劃書匯出 | https://jlwustudio.github.io/openclaw-workshop-scu-2026/survey-post.html |
 
-**下載整份教材（實作必做）**：實作時 OpenClaw 需要讀取本機的 `sample-data/`、`skills/` 等檔案，所以仍要下載整個資料夾。到 https://github.com/jlwustudio/openclaw-workshop-scu-2026 ，按綠色「Code」➔「Download ZIP」，解壓縮後也可以直接用瀏覽器開啟 `index.html` 離線閱讀。
+**下載整份教材（實作必做）**：實作時 OpenClaw 需要讀取本機的 `sample-data/`、`workshop-config/` 等檔案，所以仍要下載整個資料夾。到 https://github.com/jlwustudio/openclaw-workshop-scu-2026 ，按綠色「Code」➔「Download ZIP」，解壓縮後也可以直接用瀏覽器開啟 `index.html` 離線閱讀。
 
 > 自我檢核與課後回顧的填答只存在你目前使用的瀏覽器。線上版和下載後開啟的本機版是不同網址，紀錄不會互通，請固定用同一個版本填寫。

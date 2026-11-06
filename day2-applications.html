@@ -140,7 +140,7 @@
         <article class="card"><span class="tag">觀念 2</span><h3>🔌 MCP：讓它接得上</h3><p>連接外部工具與資料來源的開放協議（2026-07-28 版規格改為無狀態核心並強化授權）。它負責「接得上」，不保證安全；本課不安裝、不實作 MCP。</p></article>
         <article class="card"><span class="tag">觀念 3</span><h3>🛡️ 工具政策：決定能做什麼</h3><p>OpenClaw 的工具設定（今天的 <code>read-only.json</code>）與外部服務自己的權限，才決定助理實際能做什麼。所以驗收看工具紀錄，不看模型怎麼說。</p></article>
       </div>
-      <div class="activity-grid"><div class="activity"><b>01 建立</b><p>依 <a href="workshop-config/README.md">課堂唯讀設定</a> 複製可載入的 <a href="skills/scu-campus-faq-helper/SKILL.md">SKILL.md 成品</a> 與 FAQ 到獨立 workspace。</p></div><div class="activity"><b>02 限權</b><p>套用只允許 read 的工具設定與工作區路徑限制；確認寫入、執行、瀏覽及傳訊工具不可用。</p></div><div class="activity"><b>03 測試</b><p>用三個指定測試問題驗收：可回答、資料缺漏、越權／個資要求。</p></div><div class="activity"><b>04 整合</b><p>以自己已驗收的 Skill 作 MVP 的資料處理核心，保留來源與人工核准規則。</p></div></div>
+      <div class="activity-grid"><div class="activity"><b>01 建立</b><p>依 <a href="workshop-config/README.md">課堂唯讀設定</a> 把 FAQ 複製到獨立 workspace，並照 <a href="sample-data/本機最小Skill範本.md">本機最小 Skill 範本</a>第 0 節自己建立 <code>SKILL.md</code>。</p></div><div class="activity"><b>02 限權</b><p>套用只允許 read 的工具設定與工作區路徑限制；確認寫入、執行、瀏覽及傳訊工具不可用。</p></div><div class="activity"><b>03 測試</b><p>用三個指定測試問題驗收：可回答、資料缺漏、越權／個資要求。</p></div><div class="activity"><b>04 整合</b><p>以自己已驗收的 Skill 作 MVP 的資料處理核心，保留來源與人工核准規則。</p></div></div>
       <ol class="step-list"><li><strong>先列規格：</strong>使用者輸入是一段自由文字；輸出必須含回答、來源檔名與「資料未記載」的誠實回覆。</li><li><strong>再建立最小版本：</strong>只使用 <code>sample-data/校園 FAQ.md</code>，不可增加外部資料源。</li><li><strong>最後以證據驗收：</strong>完成三個測試案例，把提問、輸出、來源與是否通過寫入 MVP 工作單。</li></ol>
       <div class="code">我想使用老師指定的 Skill「［名稱］」。
 請先說明：它的用途、可能會讀寫哪些資料、如何停止或移除。
