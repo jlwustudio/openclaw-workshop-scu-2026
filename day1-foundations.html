@@ -27,7 +27,6 @@
         <div class="schedule-row" role="row"><div class="time">14:45–15:15</div><div class="topic">S07 模型與額度</div><div class="outcome">理解雲端／本機模型取捨與額度停損規則。</div></div>
         <div class="schedule-row" role="row"><div class="time">15:15–15:45</div><div class="topic">S08 整合練習〔實機〕</div><div class="outcome">完成一次「計畫 → 執行 → 檢查 → 回饋」並保留原始 CSV。</div></div>
       </div>
-      <div class="notice"><strong>Day 1 停損與專案規則：</strong>個人環境排錯超過 5 分鐘，立即切換到結對操作；每位同學都要參與 MVP 規格與驗收，不讓安裝問題吃掉專案時間。</div>
     </section>
     <section class="lesson" id="prepare">
       <div class="lesson-meta"><span class="lesson-number">S01 / PREPARE + LAUNCH</span><span class="duration">09:00–10:30</span></div>
@@ -38,7 +37,7 @@
         <li><strong>下載整份教材：</strong>到 <a href="https://github.com/jlwustudio/openclaw-workshop-scu-2026" target="_blank" rel="noopener">https://github.com/jlwustudio/openclaw-workshop-scu-2026</a>，按綠色「Code」➔「Download ZIP」下載教材壓縮檔，解壓縮到桌面等好找的位置。請下載<b>整個資料夾</b>；課程會用到裡面的 <code>assets</code> 與 <code>sample-data</code>。</li>
         <li><strong>申請金鑰並安裝軟體：</strong>打開 <a href="openclaw-install-guide.html">安裝手冊</a>，依序完成 Part A（用個人 Gmail 在 Google AI Studio 建立專案與 API 金鑰）與 Part B 步驟 1–2（安裝 Node.js、Git 與 OpenClaw 課堂固定版本）。課前已在家完成的同學，確認 <code>openclaw --version</code> 是 <code>2026.10.2</code> 即可。
           <br>這些軟體和套件在課程結束後都可以移除，步驟見 <a href="openclaw-install-guide.html#partF">安裝手冊 Part F</a>；<b>課程進行中請不要移除</b>，否則工作區的檔案會一併刪除且無法復原。</li>
-        <li id="manual-setup-guide"><strong>安裝並啟動 OpenClaw：</strong>照 <a href="openclaw-install-guide.html#first-launch">安裝手冊 Part B 步驟 3</a> 執行 <code>openclaw onboard</code> 貼上金鑰、用 <code>openclaw models set</code> 指定 Gemini 3.5 Flash Lite，再執行 <code>openclaw</code> 自己輸入開場白。助理用你取的名字回覆，就代表首次設定完成。</li>
+        <li id="manual-setup-guide"><strong>安裝並啟動 OpenClaw：</strong>照 <a href="openclaw-install-guide.html#first-launch">安裝手冊 Part B 步驟 3</a> 執行 <code>openclaw onboard</code> 貼上金鑰、用 <code>openclaw models set</code> 指定 Gemini 3.5 Flash Lite，以 <code>openclaw gateway status</code> 確認背景服務正在執行，再執行 <code>openclaw</code> 自己輸入開場白。助理用你取的名字回覆，就代表首次設定完成。</li>
         <li><strong>打開網頁版控制台：</strong>照 <a href="openclaw-install-guide.html#open-dashboard">安裝手冊 Part B 步驟 4</a> 另開一個終端機執行 <code>openclaw dashboard</code>，在瀏覽器看到剛才的對話。</li>
         <li><strong>把 sample-data 複製到工作區：</strong>照 <a href="openclaw-install-guide.html#copy-sample-data">安裝手冊 Part C 步驟 2</a> 用 Finder／檔案總管複製貼上，不需要輸入指令。</li>
       </ol>
@@ -46,7 +45,6 @@
         <span class="tip-title">不確定 Node.js 版本合不合格？（選用）</span>
         <p>在教材資料夾開啟終端機（<span data-os="mac">Mac：輸入 <code>cd</code> 加一個空格，把教材資料夾從 Finder 拖進終端機再按 Enter</span><span data-os="win">Windows：在檔案總管打開教材資料夾，點上方網址列輸入 <code>powershell</code> 按 Enter</span>），執行 <code>node assets/check-runtime.cjs</code>。出現「✓ 符合課堂要求」就沒問題；出現 <code>Cannot find module</code> 代表終端機不在教材資料夾裡。</p>
       </div>
-      <div class="notice"><strong>卡住時：</strong>同一個問題超過 5 分鐘就舉手找助教，或先和隔壁同學結對；學校或公司管理的電腦可能無法安裝軟體，請與同學結對觀察。</div>
       <div style="margin-top: 14px;">
         <button type="button" class="btn-modal-trigger sun" data-modal-target="#modal-troubleshooting" data-modal-title="🔧 疑難雜症排除：5 大常見電腦環境地雷處置">🛠️ 排錯求助：個人電腦常見 5 大安裝與權限報錯處置</button>
       </div>
@@ -111,7 +109,7 @@ npx openclaw dashboard</div></article>
         <article class="faq-row"><h3>出現 401、403、API key not valid 或 unauthorized</h3><p>金鑰貼錯或已被刪除。到 AI Studio 的 API Keys 重新複製金鑰（點複製圖示），再執行 <code>openclaw onboard</code> 選 Google 重新貼上，最後用 <code>openclaw models list --provider google</code> 確認模型。</p></article>
         <article class="faq-row"><h3>版本不對，或更新後顯示失敗</h3><p>執行 <code>openclaw --version</code>，課堂固定版本是 <code>2026.10.2</code>；不同就請助教處理，不要自行 <code>openclaw update</code>。若曾更新過，用 <code>openclaw update status</code> 查看實際結果，舊版更新程式有時會誤報失敗。</p></article>
         <article class="faq-row"><h3>Dashboard 對話卡住、停不下來</h3><p>在聊天框輸入 <code>/stop</code>，會同時清掉排隊中的後續訊息；只按 Stop 按鈕則只停目前這一輪。仍無回應時執行 <code>openclaw health --json</code>，把結果交給助教。</p></article>
-        <article class="faq-row"><h3>Dashboard 要求輸入 Token 或顯示 Gateway not reachable</h3><p>不要手動猜 Token。請在終端機執行 <code>openclaw dashboard</code>，讓它自動開啟正確連結；若背景服務沒有啟動，執行 <code>openclaw gateway install</code> 後再執行 <code>openclaw health</code>，仍不行就請助教協助。</p></article>
+        <article class="faq-row"><h3>Dashboard 要求輸入 Token 或顯示 Gateway not reachable</h3><p>不要手動猜 Token。請在終端機執行 <code>openclaw dashboard</code>，讓它自動開啟正確連結；若背景服務沒有啟動，照 <a href="openclaw-install-guide.html#check-gateway">安裝手冊「確認背景服務」</a>處理；出現 <code>connect ECONNREFUSED</code> 或一直當掉時，依 <a href="openclaw-install-guide.html#gateway-rebuild">Part E Q8</a> 重建，仍不行就改用 <a href="openclaw-install-guide.html#gateway-foreground">Q11 雙視窗前台執行</a>。</p></article>
       </div>
     </section>
 
@@ -268,11 +266,6 @@ openclaw gateway restart</code></pre>
 
     <h4>工作坊結束後想移除 OpenClaw？</h4>
     <p><b>課程進行中千萬不要移除</b>，會刪掉工作區所有檔案且無法復原。兩天課程結束後，再照 <a href="openclaw-install-guide.html#partF" target="_blank" style="color:var(--blue); font-weight:800;">安裝手冊 Part F</a> 逐步操作。</p>
-
-    <div class="notice" style="margin-top:16px;">
-      <strong>⏱️ 課堂 5 分鐘停損原則：</strong>若個人電腦排錯超過 5 分鐘仍未解決，請立即與同桌同學<strong>結對觀察</strong>，並請助教協助排錯。<br>
-      👉 更多圖解排錯請參閱：<a href="openclaw-install-guide.html#partE" target="_blank" style="color:var(--blue); font-weight:800;">本機排錯 FAQ 完整指南 ↗</a>
-    </div>
   </div>
 
 

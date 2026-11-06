@@ -34,7 +34,7 @@
     <section class="lesson" id="day2-ready">
       <div class="lesson-meta"><span class="lesson-number">S09 / READY + BUDGET</span><span class="duration">09:00–09:15</span></div>
       <h2>開始前：確認資料與工具都在正確位置</h2>
-      <p class="lesson-intro">請先確認 OpenClaw 服務正常。上午 S10–S11 沿用 Day 1 的 workspace，可在 <code>sample-data</code> 讀寫與產出 Markdown 檔；S12 起改用只能讀取的課堂唯讀 workspace。若遇到無法預期的套件問題，隨時切換到講義的文字備援路徑。</p>
+      <p class="lesson-intro">請先執行 <code>openclaw gateway status</code>，確認 Runtime 是 <code>running</code>；不是的話照 <a href="openclaw-install-guide.html#check-gateway">安裝手冊「確認背景服務」</a>處理（昨天改用雙視窗前台執行的同學，今天要再開一次視窗 A）。上午 S10–S11 沿用 Day 1 的 workspace，可在 <code>sample-data</code> 讀寫與產出 Markdown 檔；S12 起改用只能讀取的課堂唯讀 workspace。若遇到無法預期的套件問題，隨時切換到講義的文字備援路徑。</p>
       
       <div style="margin: 10px 0 16px 0; display:flex; gap:10px; flex-wrap:wrap;">
         <button type="button" class="btn-modal-trigger teal" data-modal-target="#modal-user-testing" data-modal-title="📊 目標使用者測試 (User Testing) 4 步落地法">📊 點此查看：使用者測試與量化回饋方法</button>
@@ -59,7 +59,6 @@
       <div class="lesson-meta"><span class="lesson-number">S10 / WEB</span><span class="duration">09:15–09:35</span></div>
       <h2>搜尋與整理：把網頁變成可用的事實</h2>
       <p class="lesson-intro">網頁搜尋能補足記憶盲點，但也容易帶回大量噪訊；重點不是抓多，而是精準抓取事實、標出來源，以及保留人工查證的欄位。</p>
-      <div class="notice"><strong>本節由講師示範，學員負責查驗：</strong>這時大家的工具權限仍是 Day 1 的安裝預設，助理還能執行指令。讀取外部網頁時若遇到藏在頁面裡的惡意指示（提示注入），風險最高，所以本節不在學員電腦上實跑。下方提示詞是講師示範用的；你的任務是打開同一個原始網頁，用「查證三問」檢查講師畫面上的輸出。</div>
       <div class="activity-grid"><div class="activity"><b>看一看</b><p>講師示範如何從抓取網頁原始內容，到把整理後的表格輸出成 Markdown 檔。</p></div><div class="activity"><b>講師 Demo</b><p>提供一份指定網址，請助理只摘錄指定欄位（名稱、日期、對象、來源網址）。</p></div><div class="activity"><b>寫寫看</b><p>自己寫一段限制輸出格式的提示詞，和鄰座比較；不必送出執行。</p></div><div class="activity"><b>查驗</b><p>對照原始網頁，確認助理有沒有把「推測」寫成「事實」。</p></div></div>
       <div class="code">請幫我讀取這頁網址：［貼上網址］。
 不要摘要整頁，只抓取四個欄位：活動名稱、日期、對象、來源網址。

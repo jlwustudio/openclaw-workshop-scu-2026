@@ -34,8 +34,9 @@ if ! openclaw models list --provider google 2>/dev/null | grep -Eq "gemini-3\.5-
 fi
 if ! openclaw health; then
     echo '安裝背景服務：openclaw gateway install'
-    openclaw gateway install || fail 'Gateway 安裝失敗；請保留上方錯誤交由助教檢查。'
-    openclaw health || fail 'Gateway 健康檢查未通過。'
+    openclaw gateway install || fail 'Gateway 安裝失敗；請照安裝手冊 Part E Q8 重建，或改用 Q11 雙視窗前台執行。'
+    openclaw gateway start || fail 'Gateway 啟動失敗；請照安裝手冊 Part E Q8 重建，或改用 Q11 雙視窗前台執行。'
+    openclaw health || fail 'Gateway 健康檢查未通過；請照安裝手冊 Part E Q8 重建，或改用 Q11 雙視窗前台執行。'
 fi
 echo '[完成] Gateway 健康檢查通過；模型回覆、Skill 與權限仍須各自驗收。'
 echo '第一次使用請執行 openclaw，自己輸入開場白幫助理取名（見安裝手冊 Part B 步驟 3）。'

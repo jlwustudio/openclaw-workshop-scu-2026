@@ -50,9 +50,11 @@ call openclaw health
 if not errorlevel 1 goto health_ok
 echo 安裝背景服務：openclaw gateway install
 call openclaw gateway install
-if errorlevel 1 goto failed
+if errorlevel 1 goto gateway_failed
+call openclaw gateway start
+if errorlevel 1 goto gateway_failed
 call openclaw health
-if errorlevel 1 goto failed
+if errorlevel 1 goto gateway_failed
 :health_ok
 echo [完成] Gateway 健康檢查通過；模型回覆、Skill 與權限仍須各自驗收。
 echo 開啟控制台：openclaw dashboard；停止服務：openclaw gateway stop
@@ -71,6 +73,8 @@ goto failed
 :version_mismatch
 echo [失敗] OpenClaw 版本不是課堂固定版本 %OPENCLAW_VERSION%；請交由助教處理，勿自行更新。
 goto failed
+:gateway_failed
+echo [失敗] Gateway 無法啟動；請照安裝手冊 Part E Q8 重建，或改用 Q11 雙視窗前台執行。
 :failed
 echo [未完成] 請保留上方錯誤交由助教檢查。可使用模擬演練，實機驗收仍未完成。
 pause

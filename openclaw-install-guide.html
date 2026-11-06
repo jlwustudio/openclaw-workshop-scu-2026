@@ -287,7 +287,7 @@ error (429): You exceeded your current quota ...</div>
       </ol>
       <p>精靈結束時若顯示 <code>service installation skipped</code>，代表背景服務還沒裝好，下一段會補裝。</p>
 
-      <h3 id="set-model" style="margin-top:24px;">指定模型、備援與背景服務</h3>
+      <h3 id="set-model" style="margin-top:24px;">指定模型與備援</h3>
       <p>精靈不一定會選到課堂用的模型，請逐行輸入下列指令手動指定（<code>#</code> 開頭的是說明，不用輸入）：</p>
       <div class="code"># 指定主模型（每天 500 次）
 openclaw models set google/gemini-3.5-flash-lite
@@ -296,17 +296,24 @@ openclaw models set google/gemini-3.5-flash-lite
 openclaw models fallbacks add google/gemini-3.1-flash-lite
 
 # 確認 gemini-3.5-flash-lite 那一列的 Tags 欄位出現 default
-openclaw models list --provider google
-
-# 確認背景服務
-openclaw gateway status</div>
-      <p><code>gateway status</code> 的 Runtime 不是 <code>running</code> 時，再輸入下面兩行安裝背景服務並檢查：</p>
-      <div class="code">openclaw gateway install
-openclaw health</div>
+openclaw models list --provider google</div>
       <div class="tip info">
         <span class="tip-title">為什麼模型名稱要寫版本號？</span>
         <p>不要改用 <code>gemini-flash-lite-latest</code>。latest 會隨 Google 改版自動換成別的模型，額度也可能跟著變；道理和課堂固定 OpenClaw 版本相同。</p>
       </div>
+
+      <h3 id="check-gateway" style="margin-top:24px;">確認背景服務（Gateway）正在執行</h3>
+      <p>Gateway 是讓助理在背景運作的服務，沒有它就無法對話。剛裝好的 OpenClaw 有時 Gateway 沒有啟動，或啟動後馬上當掉，所以<b>第一次對話前一定要先確認</b>：</p>
+      <div class="code">openclaw gateway status</div>
+      <ol class="step-list">
+        <li><strong>正常：</strong>Runtime 顯示 <code>running</code>，連線測試（Probe）也成功，就可以進行下一段。</li>
+        <li><strong>沒有在執行：</strong>Runtime 不是 <code>running</code>，或精靈顯示過 <code>service installation skipped</code>，輸入下面三行安裝、啟動並檢查：
+          <div class="code">openclaw gateway install
+openclaw gateway start
+openclaw health</div>
+        </li>
+        <li><strong>還是不行：</strong>出現 <code>connect ECONNREFUSED</code>、<code>SERVICE_DEFINITION_UNKNOWN</code>，或 Runtime 一下 running 一下又停掉，照 <a href="#gateway-rebuild">Part E Q8 重建背景服務</a>；重建後仍失敗，改用 <a href="#gateway-foreground">Q11 雙視窗前台執行</a>。需要更多細節時執行 <code>openclaw gateway status --deep</code>，把結果交給助教。</li>
+      </ol>
 
       <h3 id="first-chat" style="margin-top:24px;">第一次對話：幫助理取名字</h3>
       <ol class="step-list">
@@ -416,9 +423,13 @@ openclaw onboard
 openclaw models list --provider google
 openclaw models set google/gemini-3.5-flash-lite
 
-# 4. 檢查背景服務狀態；Runtime 不是 running 時安裝
+# 4. 檢查背景服務狀態；Runtime 不是 running 時安裝並啟動
 openclaw gateway status
 openclaw gateway install
+openclaw gateway start
+
+# 背景服務起不來時，改在前台執行（視窗保持開著，見 Part E Q11）
+openclaw gateway
 
 # 5. 停止背景 Gateway 服務 (釋放 Port 18789)
 openclaw gateway stop
@@ -493,10 +504,25 @@ Get-NetTCPConnection -LocalPort 18789 -State Listen -ErrorAction SilentlyContinu
         <p>這一分鐘的 token 額度用完了，不會被收費。<b>等 30 秒再送一次</b>即可。如果很常出現，代表對話已經很長（每次都會把整段對話重送），在對話框輸入 <code>/new</code> 開新對話。</p>
       </div>
 
-      <div class="faq-item">
-        <h4>Q8：Gateway 無法重啟（GATEWAY_RESTART_PREPARATION_REFUSED 或 SERVICE_DEFINITION_UNKNOWN）？</h4>
-        <p>多半是重跑精靈後，背景服務的設定前後不一致。執行下列指令，修復提示都選 <b>Yes</b>：</p>
-        <div class="code">openclaw doctor</div>
+      <div class="faq-item" id="gateway-rebuild">
+        <h4>Q8：Gateway 連不上或一直當掉（connect ECONNREFUSED、SERVICE_DEFINITION_UNKNOWN、GATEWAY_RESTART_PREPARATION_REFUSED）？</h4>
+        <p>通常是背景程式卡住、檔案被鎖住，或背景服務的登記壞了（Windows 用「工作排程器」、Mac 用系統的背景服務管理）。先試一次重啟：</p>
+        <div class="code">openclaw gateway restart</div>
+        <p>還是不行，就依序重建背景服務。<code>uninstall</code> 只移除背景服務的登記，<b>設定、工作區與對話紀錄都會保留</b>：</p>
+        <div class="code"># 1. 先停止並移除壞掉的背景服務
+openclaw gateway stop
+openclaw gateway uninstall</div>
+        <p>第 2 步只結束佔用 Port 18789 的程式。<b>不要</b>用 <code>Stop-Process -Name node</code> 或 <code>killall node</code>，那會把電腦上所有 Node.js 程式一起關掉。</p>
+        <div data-os="mac"><div class="code"># 2. 結束還卡在 Port 18789 的程式
+lsof -ti:18789 | xargs kill -9 2>/dev/null</div></div>
+        <div data-os="win"><div class="code"># 2. 結束還卡在 Port 18789 的程式
+Get-NetTCPConnection -LocalPort 18789 -State Listen -ErrorAction SilentlyContinue |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }</div></div>
+        <div class="code"># 3. 重新安裝、啟動並確認
+openclaw gateway install
+openclaw gateway start
+openclaw gateway status</div>
+        <p style="font-size:0.88rem; color:var(--muted);">重建後 Runtime 仍不是 running，改用下方 Q11 的雙視窗前台執行。</p>
       </div>
 
       <div class="faq-item">
@@ -507,6 +533,28 @@ Get-NetTCPConnection -LocalPort 18789 -State Listen -ErrorAction SilentlyContinu
       <div class="faq-item">
         <h4>Q10：今天額度用完了？</h4>
         <p>到 AI Studio 左側 <b>Rate Limit</b> 查看。主模型與備援模型各有每天 500 次，一般上課用不完；真的用完時，台灣時間下午 4 點會重置，期間請和旁邊同學共看。</p>
+      </div>
+
+      <div class="faq-item" id="gateway-foreground">
+        <h4>Q11：背景服務一直起不來？改用「雙視窗前台執行」</h4>
+        <p>不用背景服務，改成在一個視窗裡直接跑 Gateway。這是最穩定的備用方案，課堂上隨時可以切換：</p>
+        <ol class="step-list">
+          <li><strong>先停掉背景服務：</strong>避免背景服務和前台搶同一個 Port。
+            <div class="code">openclaw gateway stop</div>
+          </li>
+          <li><strong>視窗 A：在前台執行 Gateway。</strong>開一個新的終端機視窗輸入下面這行。成功時視窗會持續執行、<b>不會回到可以輸入指令的狀態</b>；這個視窗整堂課都要開著，不要在裡面打字。
+            <div class="code">openclaw gateway</div>
+          </li>
+          <li><strong>視窗 B：確認並開始對話。</strong>再開一個新的終端機視窗，先檢查連線，通過後再打開對話畫面或網頁版控制台：
+            <div class="code">openclaw health
+openclaw</div>
+            <p>網頁版一樣用 <code>openclaw dashboard</code> 開啟。不再出現 <code>connect ECONNREFUSED</code> 就代表成功。</p>
+          </li>
+        </ol>
+        <div class="tip warn">
+          <span class="tip-title">視窗 A 一關，助理就停了</span>
+          <p>關掉視窗 A、電腦睡眠或重開機後，助理與 Day 2 的 Telegram Bot 都會停止，要回到第 2 步重新執行。視窗 A 裡按 Ctrl + C 也會停止 Gateway。</p>
+        </div>
       </div>
     </section>
 

@@ -1,6 +1,6 @@
 以下網站可作為公開網頁資訊擷取練習；請以頁面實際內容為準。
 
-東吳大學教學資源中心：https://web-ch.scu.edu.tw/ctl/
+東吳大學跨領域國際學士班（GPIS）班辦公告：https://web-ch.scu.edu.tw/gpis/opinion/12979/30185
 
 注意：東吳大學首頁 www.scu.edu.tw 的網站憑證鏈不完整，OpenClaw 讀取時會出現 UNABLE_TO_VERIFY_LEAF_SIGNATURE，請改用 web-ch.scu.edu.tw 底下的子網站。
 
